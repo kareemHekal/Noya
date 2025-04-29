@@ -9,7 +9,9 @@
   import 'package:noya_app/presentation/materials_page.dart';
   
   class HomeScreen extends StatelessWidget {
-    const HomeScreen({super.key});
+    final Function(int index) onTabSelected;
+
+    const HomeScreen({super.key, required this.onTabSelected});
   
     @override
     Widget build(BuildContext context) {
@@ -45,8 +47,8 @@
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
                         colors: [
-                          Colors.brown.withOpacity(0.9),
-                          Colors.brown.withOpacity(0.4),
+                          ColorManager.oliveGreen.withOpacity(0.9),
+                          ColorManager.oliveGreen.withOpacity(0.4),
                           Colors.transparent,
                         ],
                         begin: Alignment.bottomCenter,
@@ -151,7 +153,9 @@
                         ],
                       ),
                       HomeCard(
-                        onPressed: () {},
+                        onPressed: () {
+                          onTabSelected(1);
+                        },
                         icon: const Icon(
                           Icons.inventory_2_outlined,
                           color: ColorManager.white,
@@ -161,7 +165,9 @@
                         color: ColorManager.ligthBrown,
                       ),
                       HomeCard(
-                        onPressed: () {},
+                        onPressed: () {
+                          onTabSelected(3);
+                        },
                         icon: const Icon(
                           Icons.phone,
                           color: ColorManager.white,
@@ -172,7 +178,9 @@
                         color: ColorManager.pistachio,
                       ),
                       HomeCard(
-                        onPressed: () {},
+                        onPressed: () {
+                          onTabSelected(2);
+                        },
                         icon: const Icon(
                           Icons.layers,
                           color: ColorManager.white,

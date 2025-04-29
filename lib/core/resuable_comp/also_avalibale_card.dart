@@ -6,7 +6,6 @@ class AlsoAvaliable extends StatelessWidget {
   final String description;
   final VoidCallback? onPressed;
 
-
   AlsoAvaliable({
     required this.onPressed,
     required this.label,
@@ -17,16 +16,16 @@ class AlsoAvaliable extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8.0,horizontal: 4),
+      padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 4),
       child: GestureDetector(
         onTap: onPressed,
         child: Card(
-          elevation: 3,
-          color: Colors.white,
-          shadowColor: ColorManager.white70,
+          elevation: 5,
+          color: ColorManager.lightSand,
+          shadowColor: ColorManager.offWhite,
           shape: RoundedRectangleBorder(
-            side: const BorderSide(color:ColorManager.white70),
-            borderRadius: BorderRadius.circular(15), // Rounded corners
+            side: const BorderSide(color: ColorManager.oliveGreen),
+            borderRadius: BorderRadius.circular(15),
           ),
           child: Padding(
             padding: const EdgeInsets.all(16.0),
@@ -35,15 +34,18 @@ class AlsoAvaliable extends StatelessWidget {
               children: [
                 Text(
                   label,
-                  style: const TextStyle( 
+                  style: const TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w500,
-                    color: Colors.black,
+                    color: ColorManager.oliveGreen,
                   ),
                 ),
                 Text(
                   description,
-                  style: const TextStyle(fontSize: 12, color: Colors.black),
+                  style: const TextStyle(
+                    fontSize: 12,
+                    color: ColorManager.mutedSageGreen,
+                  ),
                 ),
               ],
             ),

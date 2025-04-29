@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:noya_app/core/utils/colors_manager.dart';
 
 class CustomTextField extends StatelessWidget {
   final String label;
@@ -29,7 +30,7 @@ class CustomTextField extends StatelessWidget {
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12.0),
-          borderSide: const BorderSide(color: Colors.black87, width: 1),
+          borderSide: const BorderSide(color: ColorManager.oliveGreen, width: 2),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12.0),

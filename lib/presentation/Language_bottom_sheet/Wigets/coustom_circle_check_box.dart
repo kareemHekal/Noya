@@ -14,7 +14,7 @@ class CoustomCircleCheckBox extends StatelessWidget {
       decoration: BoxDecoration(
         shape: BoxShape.circle,
         border: Border.all(
-          color: isSelected ? ColorManager.black : Colors.grey,
+          color: isSelected ? ColorManager.oliveGreen : Colors.grey,
           width: 2,
         ),
       ),
@@ -25,7 +25,7 @@ class CoustomCircleCheckBox extends StatelessWidget {
                 height: 12,
                 decoration: const BoxDecoration(
                   shape: BoxShape.circle,
-                  color: ColorManager.black,
+                  color: ColorManager.oliveGreen,
                 ),
               ),
             )

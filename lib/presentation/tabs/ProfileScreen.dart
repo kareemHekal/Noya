@@ -9,12 +9,11 @@ import 'package:noya_app/core/utils/string_manager.dart';
 import 'package:noya_app/core/utils/text_style_manager.dart';
 import 'package:noya_app/data/models/user%20model.dart';
 import 'package:noya_app/presentation/Language_bottom_sheet/bottom_sheet.dart';
+import 'package:noya_app/presentation/base_url_changer.dart';
 import 'package:provider/provider.dart';
 
 class ProfileScreen extends StatelessWidget {
-   ProfileScreen({super.key});
-
-
+  ProfileScreen({super.key});
 
   Widget build(BuildContext context) {
     var dataprovider = Provider.of<DataProvider>(context);
@@ -22,6 +21,15 @@ class ProfileScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
+        leading: IconButton(
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => BaseUrlScreen()),
+            );
+          },
+          icon: const Icon(Icons.settings_input_antenna, color: Colors.black),
+        ),
         forceMaterialTransparency: true,
         centerTitle: true,
         title: Text(AppStrings.profileLabel),
@@ -35,14 +43,14 @@ class ProfileScreen extends StatelessWidget {
             Row(
               spacing: 20,
               children: [
-                CircleAvatar(
-                  radius: 40,
-                  child: const Icon(
+                const CircleAvatar(
+                  radius: 35,
+                  child: Icon(
                     Icons.person_2_outlined,
-                    color: Colors.black,
+                    color: ColorManager.oliveGreen,
                     size: 30,
                   ),
-                  backgroundColor: Colors.grey[200],
+                  backgroundColor: ColorManager.lightSand,
                 ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -61,12 +69,17 @@ class ProfileScreen extends StatelessWidget {
                 ),
               ],
             ),
-            ProfileCard(label: AppStrings.myOrders,onPressed: (){},),
-            ProfileCard(label: AppStrings.language,onPressed: (){showModalBottomSheet(
-              context: context,
-              backgroundColor: Colors.transparent,
-              builder: (context) =>  const LanguageBottomSheet(),
-            );},),
+            ProfileCard(label: AppStrings.myOrders, onPressed: () {}),
+            ProfileCard(
+              label: AppStrings.language,
+              onPressed: () {
+                showModalBottomSheet(
+                  context: context,
+                  backgroundColor: Colors.transparent,
+                  builder: (context) => const LanguageBottomSheet(),
+                );
+              },
+            ),
             Row(
               children: [
                 Expanded(

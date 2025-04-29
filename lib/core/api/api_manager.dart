@@ -1,16 +1,17 @@
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
+import 'package:noya_app/core/shared_prefrnces.dart';
 
-import '../constant.dart';
 
 @singleton
 class ApiManager {
+
   static late Dio dio;
-  static init() {
+  static Future<void> init() async {
+    final baseUrl = await SharedPrefsService.getBaseUrl() ??
+        "https://noya-backend.onrender.com"; // default fallback
     dio = Dio(
-      BaseOptions(
-        baseUrl: Constant.baseUrl,
-      ),
+      BaseOptions(baseUrl: baseUrl),
     );
   }
 

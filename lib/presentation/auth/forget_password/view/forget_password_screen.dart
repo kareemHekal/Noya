@@ -39,7 +39,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(forceMaterialTransparency: true),
-      backgroundColor: ColorManager.white10,
+      backgroundColor: ColorManager.white,
       body: BlocListener<AuthCubit, AuthState>(
         listener: (context, state) {
           if (state is SendEmailVerificationSuccessState) {

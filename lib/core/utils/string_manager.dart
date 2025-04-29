@@ -85,6 +85,11 @@ class AppStrings {
   static String get changeLanguage => "changeLanguage".tr();
   static String get english => "english".tr();
   static String get arabic => "arabic".tr();
+  static String get total => "total".tr();
+  static String get checkOut => "checkOut".tr();
+  static String get builYourOwnPackage => "builYourOwnPackage".tr();
+  static String get itemsSelected => "itemsSelected".tr();
+  static String get items => "items".tr();
   static String get theyResivedYourConsultationSuccessfully => "theyResivedYourConsultationSuccessfully".tr();
   static String get theyWillReciveYourConsultationIn => "theyWillReciveYourConsultationIn".tr();
   static String get customize => "customize".tr();

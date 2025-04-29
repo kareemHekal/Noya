@@ -58,7 +58,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ColorManager.white10,
+      backgroundColor: ColorManager.white,
       body: BlocListener<AuthCubit, AuthState>(
         listener: (context, state) {
           if (state is RegisterViewModelSuccess) {

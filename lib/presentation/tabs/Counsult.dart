@@ -58,11 +58,10 @@ class _CounsultState extends State<Counsult> {
             child: Column(
               spacing: 16,
               children: [
-                Container(
-                  decoration: BoxDecoration(
-                    color: ColorManager.pistachio,
-                    borderRadius: BorderRadius.circular(15),
-                  ),
+                Card(
+                  elevation: 3,
+                  shadowColor: ColorManager.mutedSageGreen,
+                  color: ColorManager.softBeige,
                   child: Padding(
                     padding: const EdgeInsets.all(12.0),
                     child: Column(
@@ -153,15 +152,15 @@ class _CounsultState extends State<Counsult> {
                     prefixIcon: const Icon(Icons.edit_note, color: Colors.black87),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12.0),
-                      borderSide: const BorderSide(color: Colors.black87, width: 1),
+                      borderSide: const BorderSide(color: ColorManager.oliveGreen, width: 2),
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12.0),
-                      borderSide: const BorderSide(color: Colors.black87, width: 1),
+                      borderSide: const BorderSide(color: ColorManager.oliveGreen, width: 2),
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12.0),
-                      borderSide: const BorderSide(color: Colors.black, width: 2.0),
+                      borderSide: const BorderSide(color: ColorManager.oliveGreen, width: 2.0),
                     ),
                     filled: true,
                     fillColor: Colors.white,
@@ -180,7 +179,7 @@ class _CounsultState extends State<Counsult> {
                         if (_formKey.currentState!.validate()) {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => TimerPage()),
+                            MaterialPageRoute(builder: (context) => const TimerPage()),
                           );
                           print('Submit form logic here');
                         }

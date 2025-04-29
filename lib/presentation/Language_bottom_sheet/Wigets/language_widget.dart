@@ -19,13 +19,13 @@ class LanguageSelectionItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: Colors.white,
+      color: isSelected ? ColorManager.lightSand : Colors.white,
       elevation: isSelected ? 2 : 0,
       shadowColor: isSelected ? ColorManager.black : Colors.transparent,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(8),
         side: BorderSide(
-          color: isSelected ? ColorManager.black : ColorManager.white60,
+          color: isSelected ? ColorManager.oliveGreen : ColorManager.white60,
           width: 1,
         ),
       ),
@@ -39,7 +39,7 @@ class LanguageSelectionItem extends StatelessWidget {
               Text(
                 label,
                 style: TextStyle(
-                  fontSize: 16, color: isSelected ? Colors.black :  ColorManager.white70,
+                  fontSize: 16, color: isSelected ? ColorManager.oliveGreen :  ColorManager.white70,
                   fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
                 ),
               ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:noya_app/core/utils/colors_manager.dart';
 
 class MyButton extends StatelessWidget {
   final String label;
@@ -18,7 +19,7 @@ class MyButton extends StatelessWidget {
       onPressed: isLoading ? null : onPressed, // Disable the button when loading
       style: ElevatedButton.styleFrom(
         foregroundColor: Colors.white,
-        backgroundColor: Colors.black,
+        backgroundColor: ColorManager.oliveGreen,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10.0),
         ),

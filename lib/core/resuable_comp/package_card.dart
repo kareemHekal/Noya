@@ -1,27 +1,16 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:noya_app/core/utils/string_manager.dart';
+import 'package:noya_app/core/utils/text_style_manager.dart';
+import 'package:noya_app/data/models/bundle_response.dart';
+import 'package:shimmer/shimmer.dart';
 
 import '../utils/colors_manager.dart' show ColorManager;
 
 class ProductCard extends StatelessWidget {
-  final String title;
-  final String subtitle;
-  final String price;
-  final String installmentOption;
-  final String description;
-  final List<String> includes;
-  final String imagePath;
+  BundleResponse bundleResponse;
 
-  const ProductCard({
-    Key? key,
-    required this.title,
-    required this.subtitle,
-    required this.price,
-    required this.installmentOption,
-    required this.description,
-    required this.includes,
-    required this.imagePath,
-  }) : super(key: key);
+  ProductCard({Key? key, required this.bundleResponse}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -37,12 +26,11 @@ class ProductCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Header with "POPULAR" tag
             Container(
               width: double.infinity,
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
               decoration: const BoxDecoration(
-                color: ColorManager.pistachio,
+                color: ColorManager.oliveGreen,
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(12),
                   topRight: Radius.circular(12),
@@ -62,14 +50,25 @@ class ProductCard extends StatelessWidget {
             Container(
               height: 150,
               width: double.infinity,
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage(imagePath),
-                  fit: BoxFit.cover,
-                ),
+              child: CachedNetworkImage(
+                imageUrl: bundleResponse.imageUrl ?? "",
+                fit: BoxFit.cover,
+                placeholder:
+                    (context, url) => Shimmer.fromColors(
+                      baseColor: Colors.grey[300]!,
+                      highlightColor: Colors.grey[100]!,
+                      child: Container(
+                        width: double.infinity,
+                        height: 150,
+                        color: Colors.white,
+                      ),
+                    ),
+                errorWidget:
+                    (context, url, error) => const Center(
+                      child: Icon(Icons.error, color: Colors.red),
+                    ),
               ),
             ),
-
             // Content
             Padding(
               padding: const EdgeInsets.all(16),
@@ -78,41 +77,24 @@ class ProductCard extends StatelessWidget {
                 children: [
                   // Title and Subtitle
                   Text(
-                    title,
+                    bundleResponse.name ?? "",
                     style: const TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 18,
                       color: Colors.black,
                     ),
                   ),
-                  const SizedBox(height: 4),
-                  Text(
-                    subtitle,
-                    style: const TextStyle(fontSize: 14, color: ColorManager.white80),
-                  ),
                   const SizedBox(height: 12),
-
                   // Price and Installment
                   Text(
-                    price,
+                    bundleResponse.price.toString(),
                     style: const TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 20,
                       color: Colors.black,
                     ),
                   ),
-                  const SizedBox(height: 4),
-                  Text(
-                    installmentOption,
-                    style: const TextStyle(fontSize: 14, color: ColorManager.white80),
-                  ),
-                  const SizedBox(height: 12),
 
-                  // Description
-                  Text(
-                    description,
-                    style: const TextStyle(fontSize: 14, color: ColorManager.white80),
-                  ),
                   const SizedBox(height: 12),
 
                   // Includes
@@ -126,49 +108,7 @@ class ProductCard extends StatelessWidget {
                   ),
                   const SizedBox(height: 8),
 
-                  // Display first 3 items
-                  ...includes
-                      .take(3)
-                      .map(
-                        (item) => Padding(
-                          padding: const EdgeInsets.only(bottom: 4),
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const Icon(
-                                Icons.check,
-                                size: 16,
-                                color: ColorManager.black,
-                              ),
-                              const SizedBox(width: 4),
-                              Expanded(
-                                child: Text(
-                                  item,
-                                  style: const TextStyle(
-                                    fontSize: 14,
-                                    color: ColorManager.white80,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-
-                  if (includes.length > 3)
-                    Padding(
-                      padding: const EdgeInsets.only(top: 4),
-                      child: Text(
-                        '+${includes.length - 3} ${AppStrings.more}',
-                        // 🔁 replaced
-                        style: const TextStyle(
-                          fontSize: 14,
-                          color: ColorManager.white80,
-
-                          fontStyle: FontStyle.italic,
-                        ),
-                      ),
-                    ),
+                  Text("${bundleResponse.bundleItems?.length} ${AppStrings.items}",style: AppTextStyle.medium14,),
 
                   // Buttons
                   Row(
@@ -184,8 +124,10 @@ class ProductCard extends StatelessWidget {
                       OutlinedButton(
                         onPressed: () {},
                         style: OutlinedButton.styleFrom(
-
-                          side: const BorderSide(color: ColorManager.black),
+                          backgroundColor: ColorManager.lightSand,
+                          side: const BorderSide(
+                            color: ColorManager.oliveGreen,
+                          ),
                         ),
                         child: Text(
                           AppStrings.customize, // 🔁 replaced

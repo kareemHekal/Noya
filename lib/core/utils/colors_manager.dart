@@ -11,7 +11,12 @@ class ColorManager {
   static const Color ligthBrown = Color(0xffF0BB78);
   static const Color pistachio = Color(0xffBBD8A3);
   static const Color brown = Color(0xffBF9264);
-
+//==================================== Brown Shades ====================================//
+  static const softBeige = Color(0xFFF5F1E9);
+  static const mutedSageGreen = Color(0xFF9DA79C);
+  static const oliveGreen = Color(0xFF5E6F64);
+  static const lightSand = Color(0xFFF7F4EF); // example sand tone
+  static const offWhite = Color(0xFFFFFEFC);
   //==================================== Const Colors ====================================//
   static const white = Color(0xffF9F9F9);
   static const black = Color(0xff0C1015);
@@ -22,17 +27,13 @@ class ColorManager {
   static const lightPink = Color(0xf0F9ECF0);
 
   //==================================== White Shades ====================================//
-  static const white10 = Color(0xfffefefe);
   static const white20 = Color(0xfffdfdfd);
   static const white30 = Color(0xffFCFCFC);
   static const white40 = Color(0xffFBFBFB);
-  static const white50 = Color(0xffEAEAEA);
-  static const whiteBase = Color(0xffF9F9F9);
   static const white60 = Color(0xffD0D0D0);
   static const white70 = Color(0xffA6A6A6);
   static const white80 = Color(0xff7D7D7D);
-  static const white90 = Color(0xff535353);
-  static const white100 = Color(0xff323232);
+
 
 
   //==================================== Black Shades ====================================//

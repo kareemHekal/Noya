@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
       theme: MyTheme.lightTheme,
       debugShowCheckedModeBanner: false,
       routes: {
-        RouteManager.mainScreen: (context) => MainScreen(),
+        RouteManager.mainScreen: (context) => const MainScreen(),
         RouteManager.loginScreen: (context) => const SignInScreen(),
         RouteManager.registerScreen: (context) =>  const RegisterScreen(),
         RouteManager.forgetPasswordScreen:

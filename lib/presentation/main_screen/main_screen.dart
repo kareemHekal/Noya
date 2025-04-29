@@ -4,83 +4,73 @@ import 'package:noya_app/core/utils/string_manager.dart';
 import 'package:noya_app/presentation/tabs/Counsult.dart';
 import 'package:noya_app/presentation/tabs/Coustom.dart';
 import 'package:noya_app/presentation/tabs/HomeScreen.dart';
-import 'package:noya_app/presentation/tabs/Packages.dart';
+import 'package:noya_app/presentation/tabs/packages/Packages.dart';
 import 'package:noya_app/presentation/tabs/ProfileScreen.dart';
 
 class MainScreen extends StatefulWidget {
-  final int initialTab;
-
-  MainScreen({super.key, this.initialTab = 0});
+  const MainScreen({super.key});
 
   @override
   State<MainScreen> createState() => _MainScreenState();
 }
-
 class _MainScreenState extends State<MainScreen> {
   int _selectedIndex = 0;
-  PageController _pageController = PageController();
+
+  late final List<Widget> _screens;
 
   @override
   void initState() {
     super.initState();
-    _selectedIndex = widget.initialTab;
-    _pageController = PageController(initialPage: _selectedIndex);
+    _screens = [
+      HomeScreen(onTabSelected: onItemTapped),
+      const Packages(),
+      const CoustomOrder(),
+      const Counsult(),
+      ProfileScreen(),
+    ];
   }
 
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-    _pageController.jumpToPage(index);
+  void onItemTapped(int index) {
+    if (_selectedIndex != index) {
+      setState(() {
+        _selectedIndex = index;
+      });
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: PageView(
-        controller: _pageController,
-        onPageChanged: (index) {
-          setState(() {
-            _selectedIndex = index;
-          });
-        },
-        children: [
-          const HomeScreen(),
-          const Packages(),
-          const CoustomOrder(),
-          const Counsult(),
-           ProfileScreen(),
-        ],
-      ),
+      body: _screens[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
-        items: <BottomNavigationBarItem>[
+        currentIndex: _selectedIndex,
+        onTap: onItemTapped,
+        selectedItemColor: Colors.black,
+        backgroundColor: ColorManager.white,
+        type: BottomNavigationBarType.fixed,
+        elevation: 0,
+        items: [
           BottomNavigationBarItem(
             icon: const Icon(Icons.home),
             label: AppStrings.homeLabel,
           ),
           BottomNavigationBarItem(
-            label: AppStrings.packagesLabel,
             icon: const Icon(Icons.inventory_2_outlined),
+            label: AppStrings.packagesLabel,
           ),
           BottomNavigationBarItem(
-            label: AppStrings.customLabel,
             icon: const Icon(Icons.layers_outlined),
+            label: AppStrings.customLabel,
           ),
           BottomNavigationBarItem(
-            label: AppStrings.consultLabel,
             icon: const Icon(Icons.phone),
+            label: AppStrings.consultLabel,
           ),
           BottomNavigationBarItem(
-            label: AppStrings.profileLabel,
             icon: const Icon(Icons.person_outline),
+            label: AppStrings.profileLabel,
           ),
         ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: Colors.black,
-        onTap: _onItemTapped,
-        backgroundColor: ColorManager.white,
-        type: BottomNavigationBarType.fixed,
-        elevation: 0,
       ),
     );
   }

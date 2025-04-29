@@ -84,6 +84,11 @@
   "changeLanguage": "Change Language",
   "english": "English",
   "arabic": "Arabic",
+  "total": "Total",
+  "checkOut": "Check Out",
+  "builYourOwnPackage" : "Build Your Own Package",
+  "itemsSelected" : "Items Selected",
+  "items" : "Items",
   "theyResivedYourConsultationSuccessfully": "They resived your consultation successfully",
   "theyWillReciveYourConsultationIn": "They will recive your consultation in 24 hours",
   "customize": "Customize"
