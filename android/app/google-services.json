@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "245882355678",
+    "project_id": "noya-51691",
+    "storage_bucket": "noya-51691.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:245882355678:android:e95b6fa9b44226088e274f",
+        "android_client_info": {
+          "package_name": "com.kareem.noyaapp.noya_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCS-eZDKexFhVqRvh8w4KMinHqqWQUoa7Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
