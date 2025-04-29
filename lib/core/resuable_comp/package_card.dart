@@ -11,8 +11,6 @@ class ProductCard extends StatelessWidget {
   final String description;
   final List<String> includes;
   final String imagePath;
-  final Color cardColor;
-  final Color textColor;
 
   const ProductCard({
     Key? key,
@@ -23,21 +21,17 @@ class ProductCard extends StatelessWidget {
     required this.description,
     required this.includes,
     required this.imagePath,
-    this.cardColor = const Color(0xFFF5F5F5),
-    this.textColor = Colors.black,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Card(
       elevation: 4,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12),
-      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       child: Container(
         width: 280,
         decoration: BoxDecoration(
-          color: cardColor,
+          color: Colors.white,
           borderRadius: BorderRadius.circular(12),
         ),
         child: Column(
@@ -54,12 +48,12 @@ class ProductCard extends StatelessWidget {
                   topRight: Radius.circular(12),
                 ),
               ),
-              child:  Text(
+              child: Text(
                 AppStrings.popular, // 🔁 replaced
                 style: const TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
-                  fontSize: 12,
+                  fontSize: 16,
                 ),
               ),
             ),
@@ -85,91 +79,92 @@ class ProductCard extends StatelessWidget {
                   // Title and Subtitle
                   Text(
                     title,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 18,
-                      color: textColor,
+                      color: Colors.black,
                     ),
                   ),
                   const SizedBox(height: 4),
                   Text(
                     subtitle,
-                    style: TextStyle(
-                      fontSize: 14,
-                      color: textColor.withOpacity(0.7),
-                    ),
+                    style: const TextStyle(fontSize: 14, color: ColorManager.white80),
                   ),
                   const SizedBox(height: 12),
 
                   // Price and Installment
                   Text(
                     price,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 20,
-                      color: textColor,
+                      color: Colors.black,
                     ),
                   ),
                   const SizedBox(height: 4),
                   Text(
                     installmentOption,
-                    style: TextStyle(
-                      fontSize: 14,
-                      color: textColor.withOpacity(0.7),
-                    ),
+                    style: const TextStyle(fontSize: 14, color: ColorManager.white80),
                   ),
                   const SizedBox(height: 12),
 
                   // Description
                   Text(
                     description,
-                    style: TextStyle(
-                      fontSize: 14,
-                      color: textColor,
-                    ),
+                    style: const TextStyle(fontSize: 14, color: ColorManager.white80),
                   ),
                   const SizedBox(height: 12),
 
                   // Includes
                   Text(
                     AppStrings.includes, // 🔁 replaced
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 14,
-                      color: textColor,
+                      color: ColorManager.black,
                     ),
                   ),
                   const SizedBox(height: 8),
 
                   // Display first 3 items
-                  ...includes.take(3).map((item) => Padding(
-                    padding: const EdgeInsets.only(bottom: 4),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Icon(Icons.check, size: 16, color: textColor),
-                        const SizedBox(width: 4),
-                        Expanded(
-                          child: Text(
-                            item,
-                            style: TextStyle(
-                              fontSize: 14,
-                              color: textColor,
-                            ),
+                  ...includes
+                      .take(3)
+                      .map(
+                        (item) => Padding(
+                          padding: const EdgeInsets.only(bottom: 4),
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Icon(
+                                Icons.check,
+                                size: 16,
+                                color: ColorManager.black,
+                              ),
+                              const SizedBox(width: 4),
+                              Expanded(
+                                child: Text(
+                                  item,
+                                  style: const TextStyle(
+                                    fontSize: 14,
+                                    color: ColorManager.white80,
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
                         ),
-                      ],
-                    ),
-                  )),
+                      ),
 
                   if (includes.length > 3)
                     Padding(
                       padding: const EdgeInsets.only(top: 4),
                       child: Text(
-                        '+${includes.length - 3} ${AppStrings.more}', // 🔁 replaced
-                        style: TextStyle(
+                        '+${includes.length - 3} ${AppStrings.more}',
+                        // 🔁 replaced
+                        style: const TextStyle(
                           fontSize: 14,
-                          color: textColor.withOpacity(0.7),
+                          color: ColorManager.white80,
+
                           fontStyle: FontStyle.italic,
                         ),
                       ),
@@ -183,17 +178,18 @@ class ProductCard extends StatelessWidget {
                         onPressed: () {},
                         child: Text(
                           AppStrings.viewDetails, // 🔁 replaced
-                          style: TextStyle(color: textColor),
+                          style: const TextStyle(color: ColorManager.black),
                         ),
                       ),
                       OutlinedButton(
                         onPressed: () {},
                         style: OutlinedButton.styleFrom(
-                          side: BorderSide(color: textColor),
+
+                          side: const BorderSide(color: ColorManager.black),
                         ),
                         child: Text(
                           AppStrings.customize, // 🔁 replaced
-                          style: TextStyle(color: textColor),
+                          style: const TextStyle(color: ColorManager.black),
                         ),
                       ),
                     ],

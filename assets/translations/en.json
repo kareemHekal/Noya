@@ -77,5 +77,8 @@
   "includes": "Includes:",
   "more": "more",
   "viewDetails": "View Details",
+  "timer": "Timer",
+  "theyResivedYourConsultationSuccessfully": "They resived your consultation successfully",
+  "theyWillReciveYourConsultationIn": "They will recive your consultation in 24 hours",
   "customize": "Customize"
 }

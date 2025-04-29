@@ -160,7 +160,7 @@
                         ),
                         label: AppStrings.buttonViewPackages,
                         description: AppStrings.descriptionViewPackages,
-                        color: ColorManager.ligthGreen,
+                        color: ColorManager.ligthBrown,
                       ),
                       HomeCard(
                         onPressed: () {},

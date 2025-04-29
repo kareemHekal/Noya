@@ -8,7 +8,7 @@ class ColorManager {
   static const Color textColor = Colors.black;
   static const Color errorColor = Colors.red;
   static const Color disabledColor = Colors.grey;
-  static const Color ligthGreen = Color(0xffF0BB78);
+  static const Color ligthBrown = Color(0xffF0BB78);
   static const Color pistachio = Color(0xffBBD8A3);
   static const Color brown = Color(0xffBF9264);
 

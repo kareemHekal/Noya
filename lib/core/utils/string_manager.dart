@@ -78,5 +78,8 @@ class AppStrings {
   static String get includes => "includes".tr();
   static String get more => "more".tr();
   static String get viewDetails => "viewDetails".tr();
+  static String get timer => "timer".tr();
+  static String get theyResivedYourConsultationSuccessfully => "theyResivedYourConsultationSuccessfully".tr();
+  static String get theyWillReciveYourConsultationIn => "theyWillReciveYourConsultationIn".tr();
   static String get customize => "customize".tr();
 }

@@ -6,6 +6,7 @@ import 'package:noya_app/core/resuable_comp/validator.dart';
 import 'package:noya_app/core/utils/colors_manager.dart';
 import 'package:noya_app/core/utils/string_manager.dart';
 import 'package:noya_app/core/utils/text_style_manager.dart';
+import 'package:noya_app/presentation/timer_page.dart';
 
 class Counsult extends StatefulWidget {
   const Counsult({super.key});
@@ -59,7 +60,7 @@ class _CounsultState extends State<Counsult> {
               children: [
                 Container(
                   decoration: BoxDecoration(
-                    color: ColorManager.white50,
+                    color: ColorManager.pistachio,
                     borderRadius: BorderRadius.circular(15),
                   ),
                   child: Padding(
@@ -177,14 +178,10 @@ class _CounsultState extends State<Counsult> {
                       label: AppStrings.sendButton,
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
-                          if (_selectedApartmentSize == null || _selectedBudget == null) {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(content: Text('Please select apartment size and budget')),
-                            );
-                            return;
-                          }
-
-                          // ✅ All fields are valid
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => TimerPage()),
+                          );
                           print('Submit form logic here');
                         }
                       },
