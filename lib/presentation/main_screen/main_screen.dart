@@ -1,5 +1,3 @@
-// ignore_for_file: must_be_immutable
-
 import 'package:flutter/material.dart';
 import 'package:noya_app/core/utils/colors_manager.dart';
 import 'package:noya_app/core/utils/string_manager.dart';
@@ -20,58 +18,65 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   int _selectedIndex = 0;
+  PageController _pageController = PageController();
 
   @override
   void initState() {
     super.initState();
     _selectedIndex = widget.initialTab;
+    _pageController = PageController(initialPage: _selectedIndex);
   }
 
   void _onItemTapped(int index) {
-
     setState(() {
       _selectedIndex = index;
     });
+    _pageController.jumpToPage(index);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: IndexedStack(
-        index: _selectedIndex,
+      body: PageView(
+        controller: _pageController,
+        onPageChanged: (index) {
+          setState(() {
+            _selectedIndex = index;
+          });
+        },
         children: [
           const HomeScreen(),
           const Packages(),
           const CoustomOrder(),
           const Counsult(),
-          const ProfileScreen(),
+           ProfileScreen(),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: <BottomNavigationBarItem>[
-           BottomNavigationBarItem(
+          BottomNavigationBarItem(
             icon: const Icon(Icons.home),
             label: AppStrings.homeLabel,
           ),
-           BottomNavigationBarItem(
-           label: AppStrings.packagesLabel,
+          BottomNavigationBarItem(
+            label: AppStrings.packagesLabel,
             icon: const Icon(Icons.inventory_2_outlined),
           ),
-           BottomNavigationBarItem(
-            label:AppStrings.customLabel,
+          BottomNavigationBarItem(
+            label: AppStrings.customLabel,
             icon: const Icon(Icons.layers_outlined),
           ),
-           BottomNavigationBarItem(
+          BottomNavigationBarItem(
             label: AppStrings.consultLabel,
             icon: const Icon(Icons.phone),
           ),
-           BottomNavigationBarItem(
+          BottomNavigationBarItem(
             label: AppStrings.profileLabel,
             icon: const Icon(Icons.person_outline),
           ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: Theme.of(context).colorScheme.primary,
+        selectedItemColor: Colors.black,
         onTap: _onItemTapped,
         backgroundColor: ColorManager.white,
         type: BottomNavigationBarType.fixed,

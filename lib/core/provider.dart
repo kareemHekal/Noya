@@ -17,4 +17,5 @@ class DataProvider extends ChangeNotifier {
     usermodel= await FirebaseFunctions.ReadUserData();
     notifyListeners();
   }
+
 }

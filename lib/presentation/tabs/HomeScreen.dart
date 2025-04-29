@@ -41,7 +41,7 @@
                   right: 0,
                   child: Container(
                     height: 300,
-                    margin: const EdgeInsets.only(top: 30), // مسافة علشان نسيب الأبيض
+                    margin: const EdgeInsets.only(top: 30),
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
                         colors: [
@@ -58,6 +58,7 @@
                       ),
                     ),
                     child: Container(
+                      width: double.infinity,
                       alignment: Alignment.bottomCenter,
                       padding: const EdgeInsets.all(16),
                       child: Column(
@@ -89,6 +90,7 @@
                               fontWeight: FontWeight.w500,
                             ),
                           ),
+                          const SizedBox(height: 10,)
                         ],
                       ),
                     ),
@@ -99,12 +101,12 @@
                   left: 0,
                   right: 0,
                   child: Container(
-                    height: 15,
+                    height:20,
                     decoration: const BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(30),
-                        topRight: Radius.circular(30),
+                        topLeft: Radius.circular(500),
+                        topRight: Radius.circular(500),
                       ),
                     ),
                   ),
@@ -118,40 +120,36 @@
               child: Container(
                 decoration: const BoxDecoration(
                   color: Colors.white,
-
                 ),
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16),
                   child: AnimationList(
-                    duration: 2000,
+                    duration: 1000,
                     reBounceDepth: 10.0,
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Text(
-                              AppStrings.sectionTitleCompleteSolutions,
-                              style: const TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                              ),
+                      Column(
+                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Text(
+                            AppStrings.sectionTitleCompleteSolutions,
+                            style: const TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
                             ),
-                            Padding(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 16,
-                              ),
-                              child: Text(
-                                textAlign: TextAlign.center,
-                                AppStrings.sectionSubtitleCompleteSolutions,
-                                style: const TextStyle(fontSize: 14),
-                              ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 16,
                             ),
-                          ],
-                        ),
+                            child: Text(
+                              textAlign: TextAlign.center,
+                              AppStrings.sectionSubtitleCompleteSolutions,
+                              style: const TextStyle(fontSize: 14),
+                            ),
+                          ),
+                        ],
                       ),
-  
                       HomeCard(
                         onPressed: () {},
                         icon: const Icon(

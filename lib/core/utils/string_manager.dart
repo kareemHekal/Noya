@@ -79,6 +79,12 @@ class AppStrings {
   static String get more => "more".tr();
   static String get viewDetails => "viewDetails".tr();
   static String get timer => "timer".tr();
+  static String get logout => "logout".tr();
+  static String get myOrders => "myOrders".tr();
+  static String get language => "language".tr();
+  static String get changeLanguage => "changeLanguage".tr();
+  static String get english => "english".tr();
+  static String get arabic => "arabic".tr();
   static String get theyResivedYourConsultationSuccessfully => "theyResivedYourConsultationSuccessfully".tr();
   static String get theyWillReciveYourConsultationIn => "theyWillReciveYourConsultationIn".tr();
   static String get customize => "customize".tr();

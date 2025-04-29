@@ -78,6 +78,12 @@
   "more": "more",
   "viewDetails": "View Details",
   "timer": "Timer",
+  "logout": "Logout",
+  "myOrders": "My Orders",
+  "language": "Language",
+  "changeLanguage": "Change Language",
+  "english": "English",
+  "arabic": "Arabic",
   "theyResivedYourConsultationSuccessfully": "They resived your consultation successfully",
   "theyWillReciveYourConsultationIn": "They will recive your consultation in 24 hours",
   "customize": "Customize"

@@ -78,6 +78,12 @@
   "more": "المزيد",
   "viewDetails": "عرض التفاصيل",
   "timer": "مؤقت",
+  "logout": "تسجيل الخروج",
+  "myOrders": "طلباتي",
+  "language": "اللغة",
+  "changeLanguage": "تغيير اللغة",
+  "english": "انجليزي",
+  "arabic": "عربي",
   "theyResivedYourConsultationSuccessfully": "لقد استلموا استشارتك بنجاح",
   "theyWillReciveYourConsultationIn": "سيتلقون استشارتك خلال",
   "customize": "تخصيص"

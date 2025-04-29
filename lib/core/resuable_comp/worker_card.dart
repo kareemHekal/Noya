@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:noya_app/core/resuable_comp/toast_message.dart';
 import 'package:noya_app/core/utils/string_manager.dart';
@@ -41,7 +42,8 @@ class FreelancerCard extends StatelessWidget {
               children: [
                 CircleAvatar(
                   radius: 40,
-                  backgroundImage: NetworkImage(imageUrl),
+                  backgroundColor: Colors.grey[200],
+                  backgroundImage: CachedNetworkImageProvider(imageUrl),
                 ),
                 const SizedBox(width: 16),
                 Expanded(
