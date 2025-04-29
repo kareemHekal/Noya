@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:noya_app/core/utils/string_manager.dart';
+
+import '../utils/colors_manager.dart' show ColorManager;
 
 class ProductCard extends StatelessWidget {
   final String title;
@@ -45,15 +48,15 @@ class ProductCard extends StatelessWidget {
               width: double.infinity,
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
               decoration: const BoxDecoration(
-                color: Colors.black,
+                color: ColorManager.pistachio,
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(12),
                   topRight: Radius.circular(12),
                 ),
               ),
-              child: const Text(
-                'POPULAR',
-                style: TextStyle(
+              child:  Text(
+                AppStrings.popular, // 🔁 replaced
+                style: const TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
                   fontSize: 12,
@@ -128,9 +131,8 @@ class ProductCard extends StatelessWidget {
                   const SizedBox(height: 12),
 
                   // Includes
-                  // Includes
                   Text(
-                    'Includes:',
+                    AppStrings.includes, // 🔁 replaced
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 14,
@@ -139,7 +141,7 @@ class ProductCard extends StatelessWidget {
                   ),
                   const SizedBox(height: 8),
 
-// Display first 3 items
+                  // Display first 3 items
                   ...includes.take(3).map((item) => Padding(
                     padding: const EdgeInsets.only(bottom: 4),
                     child: Row(
@@ -160,12 +162,11 @@ class ProductCard extends StatelessWidget {
                     ),
                   )),
 
-// Show "+X more" if there are more than 3
                   if (includes.length > 3)
                     Padding(
                       padding: const EdgeInsets.only(top: 4),
                       child: Text(
-                        '+${includes.length - 3} more',
+                        '+${includes.length - 3} ${AppStrings.more}', // 🔁 replaced
                         style: TextStyle(
                           fontSize: 14,
                           color: textColor.withOpacity(0.7),
@@ -174,7 +175,6 @@ class ProductCard extends StatelessWidget {
                       ),
                     ),
 
-
                   // Buttons
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -182,7 +182,7 @@ class ProductCard extends StatelessWidget {
                       TextButton(
                         onPressed: () {},
                         child: Text(
-                          'View Details',
+                          AppStrings.viewDetails, // 🔁 replaced
                           style: TextStyle(color: textColor),
                         ),
                       ),
@@ -192,7 +192,7 @@ class ProductCard extends StatelessWidget {
                           side: BorderSide(color: textColor),
                         ),
                         child: Text(
-                          'Customize',
+                          AppStrings.customize, // 🔁 replaced
                           style: TextStyle(color: textColor),
                         ),
                       ),

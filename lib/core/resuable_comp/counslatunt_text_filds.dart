@@ -1,23 +1,30 @@
 import 'package:flutter/material.dart';
 
-class CustomTextField  extends StatelessWidget {
+class CustomTextField extends StatelessWidget {
   final String label;
   final TextEditingController controller;
-  const CustomTextField ({required this.label, required this.controller,super.key});
+  final String? Function(String?)? validator;
+
+  const CustomTextField({
+    required this.label,
+    this.validator,
+    required this.controller,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      validator: validator,
       controller: controller,
       decoration: InputDecoration(
         labelText: label,
         labelStyle: TextStyle(color: Colors.grey[600]),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12.0),
-          // Less rounded for rectangle look
           borderSide: const BorderSide(
             color: Colors.black87,
-            width: 1, // Thicker border
+            width: 1,
           ),
         ),
         enabledBorder: OutlineInputBorder(
@@ -28,7 +35,21 @@ class CustomTextField  extends StatelessWidget {
           borderRadius: BorderRadius.circular(12.0),
           borderSide: const BorderSide(
             color: Colors.black,
-            width: 2.0, // Even thicker when focused
+            width: 2.0,
+          ),
+        ),
+        errorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12.0),
+          borderSide: const BorderSide(
+            color: Colors.red,
+            width: 2.0, // Red thick border on error
+          ),
+        ),
+        focusedErrorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12.0),
+          borderSide: const BorderSide(
+            color: Colors.red,
+            width: 2.0, // Red thick border on error and focused
           ),
         ),
         filled: true,
@@ -38,7 +59,7 @@ class CustomTextField  extends StatelessWidget {
           horizontal: 20.0,
         ),
       ),
-      style: const TextStyle(color: Colors.black87), // Text color
+      style: const TextStyle(color: Colors.black87),
     );
   }
 }

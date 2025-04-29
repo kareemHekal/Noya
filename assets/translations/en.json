@@ -61,6 +61,21 @@
   "cityLocation": "City/Location",
   "additionalNotes": "Additional Notes (Optional)",
   "freeDesignConsultation": "Free Design Consultation",
-  "freeAdviceText": "Our interior design specialists will help you create the perfect space. Fill out the form below and we'll connect you with a designer."
-
+  "freeAdviceText": "Our interior design specialists will help you create the perfect space. Fill out the form below and we'll connect you with a designer.",
+  "under15000": "Under 15,000",
+  "from15000to30000": "15,000 - 30,000",
+  "from30000to50000": "30,000 - 50,000",
+  "above50000": "50,000+",
+  "studio": "Studio",
+  "oneBedroom": "1 Bedroom",
+  "twoBedroom": "2 Bedroom",
+  "threeBedroom": "3 Bedroom",
+  "pleaseSelectApartmentSize": "Please select apartment size",
+  "pleaseSelectBudget": "Please select budget",
+  "fourPlusBedroom": "4+ Bedroom",
+  "popular": "POPULAR",
+  "includes": "Includes:",
+  "more": "more",
+  "viewDetails": "View Details",
+  "customize": "Customize"
 }

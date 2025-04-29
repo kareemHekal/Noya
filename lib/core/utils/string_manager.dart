@@ -63,4 +63,20 @@ class AppStrings {
   static String get additionalNotes => "additionalNotes".tr();
   static String get freeDesignConsultation => "freeDesignConsultation".tr();
   static String get freeAdviceText => "freeAdviceText".tr();
+  static String get under15000 => "under15000".tr();
+  static String get from15000to30000 => "from15000to30000".tr();
+  static String get from30000to50000 => "from30000to50000".tr();
+  static String get above50000 => "above50000".tr();
+  static String get studio => "studio".tr();
+  static String get oneBedroom => "oneBedroom".tr();
+  static String get twoBedroom => "twoBedroom".tr();
+  static String get threeBedroom => "threeBedroom".tr();
+  static String get pleaseSelectApartmentSize => "pleaseSelectApartmentSize".tr();
+  static String get pleaseSelectBudget => "pleaseSelectBudget".tr();
+  static String get fourPlusBedroom => "fourPlusBedroom".tr();
+  static String get popular => "popular".tr();
+  static String get includes => "includes".tr();
+  static String get more => "more".tr();
+  static String get viewDetails => "viewDetails".tr();
+  static String get customize => "customize".tr();
 }
