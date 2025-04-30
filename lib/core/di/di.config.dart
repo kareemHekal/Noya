@@ -12,11 +12,18 @@
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 import 'package:logger/logger.dart' as _i974;
+import 'package:noya_app/data/repo_impl/bundle_list_repo_impl.dart';
 
-import '../../data/repo_impl/bundle_list_repo_impl.dart' as _i824;
+import '../../data/repo_impl/get_proudct_by_id_repo_impl.dart' as _i397;
 import '../../domain/repo/bundel_list_repo.dart' as _i610;
+import '../../domain/repo/prodct_by_id_repo.dart' as _i728;
 import '../../domain/usecases/get_bundle_list_usecase.dart' as _i160;
+import '../../domain/usecases/get_product_by_id_usecase.dart' as _i705;
 import '../../presentation/auth/view_model/cubit/auth_cubit.dart' as _i351;
+import '../../presentation/package_details/view_model/pakage_details_cubit.dart'
+    as _i843;
+import '../../presentation/product_card/view_model/cubit/product_card_cubit.dart'
+    as _i583;
 import '../../presentation/tabs/packages/view_model/cubit/bundle_cubit.dart'
     as _i890;
 import '../api/api_manager.dart' as _i1047;
@@ -31,11 +38,20 @@ extension GetItInjectableX on _i174.GetIt {
     final gh = _i526.GetItHelper(this, environment, environmentFilter);
     final loggerModule = _$LoggerModule();
     gh.factory<_i351.AuthCubit>(() => _i351.AuthCubit());
+    gh.factory<_i843.PackageDetailsCubit>(() => _i843.PackageDetailsCubit());
     gh.singleton<_i1047.ApiManager>(() => _i1047.ApiManager());
     gh.lazySingleton<_i974.Logger>(() => loggerModule.loggerProvider);
     gh.lazySingleton<_i974.PrettyPrinter>(() => loggerModule.prettyPrinter);
-    gh.factory<_i610.BundleRepo>(
-      () => _i824.BundleRepoImpl(gh<_i1047.ApiManager>()),
+    gh.factory<_i610.BundleRepo>(() => BundleRepoImpl(gh<_i1047.ApiManager>()));
+    gh.factory<_i728.ProductByIdRepo>(
+      () => _i397.GetProudctByIdRepoImpl(gh<_i1047.ApiManager>()),
+    );
+    gh.factory<_i705.GetProductByIdUsecase>(
+      () =>
+          _i705.GetProductByIdUsecase(bundleRepo: gh<_i728.ProductByIdRepo>()),
+    );
+    gh.factory<_i583.ProductByIdCubit>(
+      () => _i583.ProductByIdCubit(gh<_i705.GetProductByIdUsecase>()),
     );
     gh.factory<_i160.GetBundleListUseCase>(
       () => _i160.GetBundleListUseCase(bundleRepo: gh<_i610.BundleRepo>()),

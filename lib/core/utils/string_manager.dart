@@ -90,6 +90,10 @@ class AppStrings {
   static String get builYourOwnPackage => "builYourOwnPackage".tr();
   static String get itemsSelected => "itemsSelected".tr();
   static String get items => "items".tr();
+  static String get noProducts => "noProducts".tr();
+  static String get quantity => "quantity".tr();
+  static String get description => "Description".tr();
+  static String get inStock => "inStock".tr();
   static String get theyResivedYourConsultationSuccessfully => "theyResivedYourConsultationSuccessfully".tr();
   static String get theyWillReciveYourConsultationIn => "theyWillReciveYourConsultationIn".tr();
   static String get customize => "customize".tr();

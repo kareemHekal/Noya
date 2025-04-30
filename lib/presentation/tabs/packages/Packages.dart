@@ -5,6 +5,7 @@ import 'package:noya_app/core/resuable_comp/package_card.dart';
 import 'package:noya_app/core/resuable_comp/toast_message.dart';
 import 'package:noya_app/core/utils/string_manager.dart';
 import 'package:animation_list/animation_list.dart';
+import 'package:noya_app/presentation/package_details/view_model/pakage_details_cubit.dart';
 import 'package:noya_app/presentation/tabs/packages/view_model/cubit/bundle_cubit.dart';
 import 'package:shimmer/shimmer.dart';
 
@@ -15,6 +16,8 @@ class Packages extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final packageCubit = getIt<PackageDetailsCubit>();
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -24,7 +27,9 @@ class Packages extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: BlocProvider(
-          create: (_) => getIt<BundleCubit>()..doIntent(GetBundleListIntent()),
+          create: (_) =>
+          getIt<BundleCubit>()
+            ..doIntent(GetBundleListIntent()),
           child: BlocListener<BundleCubit, BundleState>(
             listener: (context, state) {
               if (state is GetBundlesErrorState) {
@@ -62,15 +67,23 @@ class Packages extends StatelessWidget {
                     reBounceDepth: 20,
                     animationDirection: AnimationDirection.vertical,
                     opacityRange: Tween<double>(begin: 0.0, end: 1.0),
-                    children:
-                        state.bundles.map((bundle) {
-                          return Padding(
-                            padding: const EdgeInsets.only(bottom: 16.0),
-                            child: ProductCard(bundleResponse: bundle),
-                          );
-                        }).toList(),
+                    children: state.bundles.map((bundle) {
+                      return Padding(
+                        padding: const EdgeInsets.only(bottom: 16.0),
+                        child:
+                      BlocProvider<PackageDetailsCubit>(
+                        create: (_) => packageCubit,
+                        child: PackageDetails(
+                          packageDetailsCubit: packageCubit,
+                          bundleResponse: bundle,
+                        ),
+                      ),
+
+                      );
+                    }).toList(),
                   );
-                } else {
+                }
+                else {
                   return const SizedBox();
                 }
               },

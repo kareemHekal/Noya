@@ -89,7 +89,11 @@
   "builYourOwnPackage" : "Build Your Own Package",
   "itemsSelected" : "Items Selected",
   "items" : "Items",
+  "noProducts" : "No Products",
+  "quantity" : "Quantity",
+  "Description" : "Description",
+  "inStock" : "in Stock",
   "theyResivedYourConsultationSuccessfully": "They resived your consultation successfully",
-  "theyWillReciveYourConsultationIn": "They will recive your consultation in 24 hours",
+  "theyWillReciveYourConsultationIn": "They will recive your consultation in",
   "customize": "Customize"
 }

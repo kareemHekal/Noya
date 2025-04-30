@@ -1,16 +1,22 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:noya_app/core/resuable_comp/myBotton.dart';
 import 'package:noya_app/core/utils/string_manager.dart';
 import 'package:noya_app/core/utils/text_style_manager.dart';
 import 'package:noya_app/data/models/bundle_response.dart';
+import 'package:noya_app/presentation/package_details/package_details_page.dart';
+import 'package:noya_app/presentation/package_details/view_model/pakage_details_cubit.dart';
 import 'package:shimmer/shimmer.dart';
 
 import '../utils/colors_manager.dart' show ColorManager;
 
-class ProductCard extends StatelessWidget {
+class PackageDetails extends StatelessWidget {
   BundleResponse bundleResponse;
+  final PackageDetailsCubit packageDetailsCubit;
 
-  ProductCard({Key? key, required this.bundleResponse}) : super(key: key);
+  PackageDetails(
+      {required this.packageDetailsCubit, Key? key, required this.bundleResponse})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +60,8 @@ class ProductCard extends StatelessWidget {
                 imageUrl: bundleResponse.imageUrl ?? "",
                 fit: BoxFit.cover,
                 placeholder:
-                    (context, url) => Shimmer.fromColors(
+                    (context, url) =>
+                    Shimmer.fromColors(
                       baseColor: Colors.grey[300]!,
                       highlightColor: Colors.grey[100]!,
                       child: Container(
@@ -64,9 +71,10 @@ class ProductCard extends StatelessWidget {
                       ),
                     ),
                 errorWidget:
-                    (context, url, error) => const Center(
-                      child: Icon(Icons.error, color: Colors.red),
-                    ),
+                    (context, url, error) =>
+                const Center(
+                  child: Icon(Icons.error, color: Colors.red),
+                ),
               ),
             ),
             // Content
@@ -108,32 +116,30 @@ class ProductCard extends StatelessWidget {
                   ),
                   const SizedBox(height: 8),
 
-                  Text("${bundleResponse.bundleItems?.length} ${AppStrings.items}",style: AppTextStyle.medium14,),
+                  Text(
+                    "${bundleResponse.bundleItems?.length} ${AppStrings.items}",
+                    style: AppTextStyle.medium14,
+                  ),
 
                   // Buttons
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
+                    mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      TextButton(
-                        onPressed: () {},
-                        child: Text(
-                          AppStrings.viewDetails, // 🔁 replaced
-                          style: const TextStyle(color: ColorManager.black),
-                        ),
-                      ),
-                      OutlinedButton(
-                        onPressed: () {},
-                        style: OutlinedButton.styleFrom(
-                          backgroundColor: ColorManager.lightSand,
-                          side: const BorderSide(
-                            color: ColorManager.oliveGreen,
+                      MyButton(label: AppStrings.viewDetails, onPressed: () {
+                        packageDetailsCubit.products.clear();
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder:
+                                (context) =>
+                                PackageDetailsPage(
+                                  packageDetailsCubit:packageDetailsCubit,
+                                  bundle: bundleResponse,
+                                ),
                           ),
-                        ),
-                        child: Text(
-                          AppStrings.customize, // 🔁 replaced
-                          style: const TextStyle(color: ColorManager.black),
-                        ),
-                      ),
+                        );
+                      },)
                     ],
                   ),
                 ],

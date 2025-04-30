@@ -45,7 +45,7 @@ class _MainScreenState extends State<MainScreen> {
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedIndex,
         onTap: onItemTapped,
-        selectedItemColor: Colors.black,
+        selectedItemColor: ColorManager.oliveGreen,
         backgroundColor: ColorManager.white,
         type: BottomNavigationBarType.fixed,
         elevation: 0,
@@ -59,7 +59,7 @@ class _MainScreenState extends State<MainScreen> {
             label: AppStrings.packagesLabel,
           ),
           BottomNavigationBarItem(
-            icon: const Icon(Icons.layers_outlined),
+            icon: const Icon(Icons.layers_outlined,),
             label: AppStrings.customLabel,
           ),
           BottomNavigationBarItem(

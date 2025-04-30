@@ -28,7 +28,7 @@ class MyTheme {
           color: Colors.black,
           fontWeight: FontWeight.bold,
         ),
-        selectedItemColor: Colors.black,
+        selectedItemColor: ColorManager.oliveGreen,
         unselectedItemColor: Colors.grey,
         backgroundColor: Colors.white,
         selectedIconTheme: IconThemeData(color: Colors.black),

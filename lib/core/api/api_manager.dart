@@ -2,37 +2,40 @@ import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:noya_app/core/shared_prefrnces.dart';
 
-
 @singleton
 class ApiManager {
-
   static late Dio dio;
+
   static Future<void> init() async {
-    final baseUrl = await SharedPrefsService.getBaseUrl() ??
-        "https://noya-backend.onrender.com"; // default fallback
-    dio = Dio(
-      BaseOptions(baseUrl: baseUrl),
-    );
+    final baseUrl =
+        await SharedPrefsService.getBaseUrl() ??
+        ""; // default fallback
+    dio = Dio(BaseOptions(baseUrl: baseUrl));
   }
 
-  Future<Response> getRequest(
-      {required String endpoint,
-      Map<String, dynamic>? queryParameters,
-      Map<String, dynamic>? headers}) async {
-    var response = await dio.get(endpoint,
-        queryParameters: queryParameters,
-        options: Options(
-          headers: headers,
-        ));
+  Future<Response> getRequest({
+    required String endpoint,
+    Map<String, dynamic>? queryParameters,
+    Map<String, dynamic>? headers,
+  }) async {
+    var response = await dio.get(
+      endpoint,
+      queryParameters: queryParameters,
+      options: Options(headers: headers),
+    );
     return response;
   }
 
-  Future<Response> postRequest(
-      {required String endpoint,
-      Map<String, dynamic>? body,
-      Map<String, dynamic>? headers}) async {
-    var response = await dio.post(endpoint,
-        data: body, options: Options(headers: headers));
+  Future<Response> postRequest({
+    required String endpoint,
+    Map<String, dynamic>? body,
+    Map<String, dynamic>? headers,
+  }) async {
+    var response = await dio.post(
+      endpoint,
+      data: body,
+      options: Options(headers: headers),
+    );
     return response;
   }
 
@@ -46,34 +49,34 @@ class ApiManager {
       endpoint,
       queryParameters: queryParameters,
       data: data, // ✅ Pass the request body here
-      options: Options(
-        headers: headers,
-      ),
+      options: Options(headers: headers),
     );
     return response;
   }
 
-  Future<Response> delete(
-      {required String endpoint,
-      Map<String, dynamic>? queryParameters,
-      Map<String, dynamic>? headers}) async {
-    var response = await dio.delete(endpoint,
-        queryParameters: queryParameters,
-        options: Options(
-          headers: headers,
-        ));
+  Future<Response> delete({
+    required String endpoint,
+    Map<String, dynamic>? queryParameters,
+    Map<String, dynamic>? headers,
+  }) async {
+    var response = await dio.delete(
+      endpoint,
+      queryParameters: queryParameters,
+      options: Options(headers: headers),
+    );
     return response;
   }
 
-  Future<Response> patchRequest(
-      {required String endpoint,
-      Map<String, dynamic>? body,
-      Map<String, dynamic>? headers}) async {
-    var response = await dio.patch(endpoint,
-        data: body,
-        options: Options(
-          headers: headers,
-        ));
+  Future<Response> patchRequest({
+    required String endpoint,
+    Map<String, dynamic>? body,
+    Map<String, dynamic>? headers,
+  }) async {
+    var response = await dio.patch(
+      endpoint,
+      data: body,
+      options: Options(headers: headers),
+    );
     return response;
   }
 
@@ -86,10 +89,7 @@ class ApiManager {
       var response = await dio.put(
         endpoint,
         data: formData,
-        options: Options(
-          headers: headers,
-          contentType: 'multipart/form-data',
-        ),
+        options: Options(headers: headers, contentType: 'multipart/form-data'),
       );
       return response;
     } catch (e) {
