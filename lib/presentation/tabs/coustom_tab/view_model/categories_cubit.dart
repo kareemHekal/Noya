@@ -32,7 +32,8 @@ import 'package:noya_app/core/utils/string_manager.dart';
     int selectedIndex = 0;
     static CategoriesCubit get(context) => BlocProvider.of(context);
 
-    getCategories() async {
+    getCategories(List<Product> products) async {
+      selectedProducts = products;
       emit(GetCategoriesLoadingState());
       final result = await categoriesUsecase.invoke();
       switch (result) {
@@ -62,8 +63,8 @@ import 'package:noya_app/core/utils/string_manager.dart';
     }
 
 
-    removeProduct(Product product) {
-      selectedProducts.removeWhere((p) => p.productId == product.productId);
+    removeProduct(num? productId) {
+      selectedProducts.removeWhere((p) => p.productId == productId);
       emit(CategoriesUpdatedState());
     }
 

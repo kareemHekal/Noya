@@ -7,12 +7,14 @@ import 'package:noya_app/core/resuable_comp/toast_message.dart';
 import 'package:noya_app/core/utils/colors_manager.dart';
 import 'package:noya_app/core/utils/string_manager.dart';
 import 'package:noya_app/core/utils/text_style_manager.dart';
+import 'package:noya_app/data/models/product.dart';
 import 'package:noya_app/presentation/tabs/coustom_tab/widgets/custom_product_widget.dart';
 import 'package:noya_app/presentation/tabs/coustom_tab/widgets/shimmer_widget.dart';
 import 'package:noya_app/presentation/tabs/coustom_tab/view_model/categories_cubit.dart';
 
 class CoustomOrder extends StatefulWidget {
-  const CoustomOrder({super.key});
+  List<Product>? products;
+   CoustomOrder({this.products,super.key});
 
   @override
   State<CoustomOrder> createState() => _CoustomOrderState();
@@ -31,7 +33,7 @@ class _CoustomOrderState extends State<CoustomOrder>
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => getIt<CategoriesCubit>()..getCategories(),
+      create: (context) => getIt<CategoriesCubit>()..getCategories(widget.products??[]),
       child: BlocListener<CategoriesCubit, CategoriesStates>(
         listener: (context, state) {
           if (state is GetCategoriesErrorState) {

@@ -4,7 +4,6 @@ import 'package:noya_app/core/di/di.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:noya_app/core/resuable_comp/toast_message.dart';
 import 'package:noya_app/core/utils/colors_manager.dart';
-import 'package:noya_app/core/utils/string_manager.dart';
 import 'package:noya_app/data/models/product.dart';
 import 'package:noya_app/presentation/package_details/view_model/pakage_details_cubit.dart';
 import 'package:noya_app/presentation/product_card/view_model/cubit/product_card_intent.dart';
@@ -144,6 +143,17 @@ class ProductCard extends StatelessWidget {
                                   ),
                                   const SizedBox(height: 4),
                                   Text(
+                                    product.description ?? "No Name",
+                                    maxLines: 2,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: const TextStyle(
+                                      color: ColorManager.mutedSageGreen,
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                  const SizedBox(height: 4),
+                                  Text(
                                     "${product.price?.toStringAsFixed(2) ?? '0.00'} EGP",
                                     style: const TextStyle(
                                       fontSize: 14,
@@ -152,16 +162,6 @@ class ProductCard extends StatelessWidget {
                                     ),
                                   ),
                                   const SizedBox(height: 4),
-                                  Text(
-                                    " ${AppStrings.quantity} ${product.quantity.toString()}",
-                                    maxLines: 2,
-                                    overflow: TextOverflow.ellipsis,
-                                    style: const TextStyle(
-                                      color: ColorManager.oliveGreen,
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
                                 ],
                               ),
                             ),

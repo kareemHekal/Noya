@@ -154,9 +154,10 @@ class _CustomProductDetailsPageState extends State<CustomProductDetailsPage> {
                         const SizedBox(width: 16),
                         Expanded(
                           child: MyButton(
-                            label: AppStrings.addToCart,
-                            onPressed: () {
-                              widget.cubit.addProduct(widget.product);
+                            label:updatedProduct == null? AppStrings.addToCart :AppStrings.removeFromCart,
+                            onPressed: () {updatedProduct == null?
+                              widget.cubit.addProduct(widget.product):
+                              widget.cubit.removeProduct(widget.product.productId!);
                               setState(() {});
                             },
                           ),

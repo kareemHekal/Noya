@@ -7,6 +7,7 @@ import 'package:noya_app/core/resuable_comp/myBotton.dart';
 import 'package:noya_app/core/utils/colors_manager.dart';
 import 'package:noya_app/core/utils/string_manager.dart';
 import 'package:noya_app/data/models/bundle_response.dart';
+import 'package:noya_app/presentation/tabs/coustom_tab/Coustom.dart';
 import 'package:shimmer/shimmer.dart';
 import '../product_card/product_card.dart';
 import 'view_model/pakage_details_cubit.dart';
@@ -15,7 +16,11 @@ class PackageDetailsPage extends StatelessWidget {
   final PackageDetailsCubit packageDetailsCubit;
   final BundleResponse bundle;
 
-  const PackageDetailsPage({required this.packageDetailsCubit, required this.bundle, super.key});
+  const PackageDetailsPage({
+    required this.packageDetailsCubit,
+    required this.bundle,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -118,39 +123,39 @@ class PackageDetailsPage extends StatelessWidget {
                     final item = bundle.bundleItems![index];
                     return ProductCard(
                       packageDetailsCubit: packageDetailsCubit,
-                        quantity: item.quantity,productId: item.productId);
+                      quantity: item.quantity,
+                      productId: item.productId,
+                    );
                   },
                 ),
               )
               : Center(
                 child: Text(
                   AppStrings.noProducts,
-                  style: const TextStyle(color: ColorManager.oliveGreen, fontSize: 20),
+                  style: const TextStyle(
+                    color: ColorManager.oliveGreen,
+                    fontSize: 20,
+                  ),
                 ),
               ),
 
-          // Buttons at the bottom
           Padding(
             padding: const EdgeInsets.all(16),
             child: Row(
               children: [
                 Expanded(
-                  child: ElevatedButton(
-                    onPressed: () {},
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.grey.shade300,
-                      foregroundColor: Colors.black,
-                      padding: const EdgeInsets.symmetric(vertical: 16),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                    ),
-                    child: const Text("Customize"),
+                  child: MyButton(
+                    label: AppStrings.customize,
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder:
+                              (context) => CoustomOrder(products: packageDetailsCubit.products,)
+                        ),
+                      );
+                    },
                   ),
-                ),
-                const SizedBox(width: 16),
-                Expanded(
-                  child: MyButton(label: AppStrings.checkOut, onPressed: () {}),
                 ),
               ],
             ),

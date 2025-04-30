@@ -128,55 +128,46 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
 
                     // Add to cart section
                     Row(
+                      mainAxisSize: MainAxisSize.max,
                       children: [
-                        // Quantity selector
-                        Container(
-                          decoration: BoxDecoration(
-                            border: Border.all(color: Colors.grey),
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                          child: Row(
-                            children: [
-                              IconButton(
-                                icon: const Icon(Icons.remove),
-                                onPressed: currentQuantity > 1
-                                    ? () {
-                                  setState(() {
-                                    widget.packageDetailsCubit
-                                        .decreaseProductQuantity(widget.product.productId!);
-                                  });
-                                }
-                                    : null,
-                              ),
-
-                              Text(
-                                currentQuantity.toString(),
-                                style: const TextStyle(fontSize: 16),
-                              ),
-                              IconButton(
-                                icon: const Icon(Icons.add),
-                                onPressed: () {
-                                  setState(() {
-                                    widget.packageDetailsCubit
-                                        .increaseProductQuantity(
-                                      widget.product.productId!,
-                                    );
-                                  });
-                                  print(widget.packageDetailsCubit.products);
-                                },
-                              ),
-                            ],
+                        Expanded(
+                          child: Card(
+                            color: ColorManager.mutedSageGreen,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                IconButton(
+                                  icon: const Icon(Icons.remove,size: 30,color:ColorManager.lightSand ,),
+                                  onPressed: currentQuantity > 1
+                                      ? () {
+                                    setState(() {
+                                      widget.packageDetailsCubit
+                                          .decreaseProductQuantity(widget.product.productId!);
+                                    });
+                                  }
+                                      : null,
+                                ),
+                                Text(
+                                  currentQuantity.toString(),
+                                  style: const TextStyle(fontSize: 18, color: ColorManager.oliveGreen),
+                                ),
+                                IconButton(
+                                  icon: const Icon(Icons.add,size: 30,color:ColorManager.lightSand ,),
+                                  onPressed: () {
+                                    setState(() {
+                                      widget.packageDetailsCubit
+                                          .increaseProductQuantity(
+                                        widget.product.productId!,
+                                      );
+                                    });
+                                    print(widget.packageDetailsCubit.products);
+                                  },
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                         const SizedBox(width: 16),
-
-                        // Add to cart button
-                        Expanded(
-                          child: MyButton(
-                            label: AppStrings.checkOut,
-                            onPressed: () {},
-                          ),
-                        ),
                       ],
                     ),
                   ],

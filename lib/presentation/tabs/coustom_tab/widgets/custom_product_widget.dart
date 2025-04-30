@@ -168,7 +168,7 @@ class CustomProductWidget extends StatelessWidget {
             Positioned.fill(
               child: GestureDetector(
                 onTap: () {
-                  categoriesCubit.removeProduct(product);
+                  categoriesCubit.removeProduct(product.productId);
                 },
                 child: Container(
                   decoration: BoxDecoration(

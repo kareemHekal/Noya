@@ -92,6 +92,7 @@
   "noProducts" : "No Products",
   "quantity" : "Quantity",
   "Description" : "Description",
+  "removeFromCart" : "Remove From Cart",
   "noProductsAvailable" : "No products available.",
   "inStock" : "in Stock",
   "addToCart" : "Add to Cart",
