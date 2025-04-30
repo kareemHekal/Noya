@@ -95,6 +95,8 @@ class AppStrings {
   static String get description => "Description".tr();
   static String get noProductsAvailable => "noProductsAvailable".tr();
   static String get inStock => "inStock".tr();
+  static String get addToCart => "addToCart".tr();
+  static String get itsAlreadyAdded => "itsAlreadyAdded".tr();
   static String get theyResivedYourConsultationSuccessfully => "theyResivedYourConsultationSuccessfully".tr();
   static String get theyWillReciveYourConsultationIn => "theyWillReciveYourConsultationIn".tr();
   static String get customize => "customize".tr();

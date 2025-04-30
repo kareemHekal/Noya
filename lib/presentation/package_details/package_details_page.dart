@@ -8,7 +8,7 @@ import 'package:noya_app/core/utils/colors_manager.dart';
 import 'package:noya_app/core/utils/string_manager.dart';
 import 'package:noya_app/data/models/bundle_response.dart';
 import 'package:shimmer/shimmer.dart';
-import '../product_card/view_model/product_card.dart';
+import '../product_card/product_card.dart';
 import 'view_model/pakage_details_cubit.dart';
 
 class PackageDetailsPage extends StatelessWidget {

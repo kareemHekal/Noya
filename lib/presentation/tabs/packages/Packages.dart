@@ -72,7 +72,7 @@ class Packages extends StatelessWidget {
                         padding: const EdgeInsets.only(bottom: 16.0),
                         child:
                       BlocProvider<PackageDetailsCubit>(
-                        create: (_) => packageCubit,
+                        create: (_) => getIt<PackageDetailsCubit>(),
                         child: PackageDetails(
                           packageDetailsCubit: packageCubit,
                           bundleResponse: bundle,

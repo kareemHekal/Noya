@@ -59,12 +59,18 @@ class ProfileScreen extends StatelessWidget {
                       usermodel?.name ?? "User",
                       style: AppTextStyle.medium20,
                     ),
-                    Text(
-                      usermodel?.email ?? "User",
-                      style: AppTextStyle.medium16.copyWith(
-                        color: ColorManager.white80,
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width * 0.6, // or use Flexible
+                      child: Text(
+                        usermodel?.email ?? "User",
+                        style: AppTextStyle.medium16.copyWith(
+                          color: ColorManager.white80,
+                        ),
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
                       ),
                     ),
+
                   ],
                 ),
               ],

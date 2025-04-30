@@ -1,33 +1,34 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:noya_app/core/utils/colors_manager.dart';
 import 'package:noya_app/data/models/product.dart';
+import 'package:noya_app/presentation/tabs/coustom_tab/custom_product_details.dart';
+import 'package:noya_app/presentation/tabs/coustom_tab/view_model/categories_cubit.dart';
 import 'package:shimmer/shimmer.dart';
 
 class CustomProductWidget extends StatelessWidget {
   Product product;
   bool isSelected;
+  final CategoriesCubit categoriesCubit;
 
   CustomProductWidget({
+    required this.categoriesCubit,
     required this.isSelected,
     required this.product,
     super.key,
   });
 
-
-
   @override
   Widget build(BuildContext context) {
     return Card(
       color: Colors.white,
-      shadowColor: isSelected
-          ? ColorManager.mutedSageGreen
-          : ColorManager.lightSand,
+      shadowColor:
+          isSelected ? ColorManager.mutedSageGreen : ColorManager.lightSand,
       shape: RoundedRectangleBorder(
         side: BorderSide(
-          color: isSelected
-              ? ColorManager.mutedSageGreen
-              : ColorManager.lightSand,
+          color:
+              isSelected ? ColorManager.mutedSageGreen : ColorManager.lightSand,
           width: 1,
         ),
         borderRadius: BorderRadius.circular(12),
@@ -48,13 +49,16 @@ class CustomProductWidget extends StatelessWidget {
                     height: 120,
                     width: double.infinity,
                     fit: BoxFit.cover,
-                    placeholder: (context, url) => Shimmer.fromColors(
-                      baseColor: Colors.grey[300]!,
-                      highlightColor: Colors.grey[100]!,
-                      child: Container(color: Colors.white),
-                    ),
-                    errorWidget: (context, url, error) =>
-                    const Center(child: Icon(Icons.error, color: Colors.red)),
+                    placeholder:
+                        (context, url) => Shimmer.fromColors(
+                          baseColor: Colors.grey[300]!,
+                          highlightColor: Colors.grey[100]!,
+                          child: Container(color: Colors.white),
+                        ),
+                    errorWidget:
+                        (context, url, error) => const Center(
+                          child: Icon(Icons.error, color: Colors.red),
+                        ),
                   ),
                 ),
               ),
@@ -62,66 +66,95 @@ class CustomProductWidget extends StatelessWidget {
                 child: SingleChildScrollView(
                   child: Padding(
                     padding: const EdgeInsets.all(12.0),
-                    child: Container(
-                      padding: const EdgeInsets.all(8),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Text(
-                            product.productName ?? "No Name",
-                            maxLines: 2,
-                            overflow: TextOverflow.ellipsis,
-                            style: const TextStyle(
-                              color: ColorManager.oliveGreen,
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => BlocProvider.value(
+                              value: categoriesCubit,
+                              child: CustomProductDetailsPage(
+                                cubit: categoriesCubit,
+                                product: product,
+                              ),
                             ),
                           ),
-                          const SizedBox(height: 4),
-                          Text(
-                            "${product.description}",
-                            style: const TextStyle(
-                              fontSize: 14,
-                              color: ColorManager.mutedSageGreen,
-                              fontWeight: FontWeight.w500,
+                        );
+
+                      },
+                      child: Container(
+                        padding: const EdgeInsets.all(8),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Text(
+                              product.productName ?? "No Name",
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                              style: const TextStyle(
+                                color: ColorManager.oliveGreen,
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
-                          ),
-                          const SizedBox(height: 4),
-                          Row(
-                            children: [
-                              Text(
-                                "${product.price?.toStringAsFixed(2) ?? '0.00'} EGP",
-                                style: const TextStyle(
-                                  fontSize: 14,
-                                  color: ColorManager.mutedSageGreen,
-                                  fontWeight: FontWeight.w500,
-                                ),
+                            const SizedBox(height: 4),
+                            Text(
+                              "${product.description}",
+                              style: const TextStyle(
+                                fontSize: 14,
+                                color: ColorManager.mutedSageGreen,
+                                fontWeight: FontWeight.w500,
                               ),
-                              const Spacer(),
-                              Container(
-                                decoration: BoxDecoration(
-                                  border: Border.all(
-                                    color: isSelected
-                                        ? ColorManager.mutedSageGreen
-                                        : ColorManager.oliveGreen,
-                                    width: 1,
+                            ),
+                            const SizedBox(height: 4),
+                            Row(
+                              children: [
+                                Text(
+                                  "${product.price?.toStringAsFixed(2) ?? '0.00'} EGP",
+                                  style: const TextStyle(
+                                    fontSize: 14,
+                                    color: ColorManager.mutedSageGreen,
+                                    fontWeight: FontWeight.w500,
                                   ),
-                                  borderRadius: const BorderRadius.all(
-                                    Radius.circular(4),
+                                ),
+                                const Spacer(),
+                                GestureDetector(
+                                  onTap: () {
+                                    if (isSelected == false) {
+                                      categoriesCubit.addProduct(product);
+                                    }
+                                  },
+
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      border: Border.all(
+                                        color:
+                                            isSelected
+                                                ? ColorManager.mutedSageGreen
+                                                : ColorManager.oliveGreen,
+                                        width: 1,
+                                      ),
+                                      borderRadius: const BorderRadius.all(
+                                        Radius.circular(4),
+                                      ),
+                                      color:
+                                          isSelected
+                                              ? ColorManager.mutedSageGreen
+                                              : ColorManager.oliveGreen,
+                                    ),
+                                    child: Icon(
+                                      color: Colors.white,
+                                      isSelected
+                                          ? Icons.done_outlined
+                                          : Icons.add,
+                                    ),
                                   ),
-                                  color: isSelected
-                                      ? ColorManager.mutedSageGreen
-                                      : ColorManager.oliveGreen,
                                 ),
-                                child: Icon(
-                                  color: Colors.white,
-                                  isSelected ? Icons.done_outlined : Icons.add,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),
@@ -133,23 +166,27 @@ class CustomProductWidget extends StatelessWidget {
           // Overlay when selected
           if (isSelected)
             Positioned.fill(
-              child: Container(
-                decoration: BoxDecoration(
-                  color: ColorManager.oliveGreen.withOpacity(0.2),
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: const Center(
-                  child: Icon(
-                    Icons.check_circle,
-                    size: 48,
-                    color: ColorManager.oliveGreen,
+              child: GestureDetector(
+                onTap: () {
+                  categoriesCubit.removeProduct(product);
+                },
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: ColorManager.oliveGreen.withOpacity(0.2),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: const Center(
+                    child: Icon(
+                      Icons.check_circle,
+                      size: 48,
+                      color: ColorManager.oliveGreen,
+                    ),
                   ),
                 ),
               ),
             ),
         ],
       ),
-
     );
   }
 }

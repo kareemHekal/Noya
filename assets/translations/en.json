@@ -94,6 +94,8 @@
   "Description" : "Description",
   "noProductsAvailable" : "No products available.",
   "inStock" : "in Stock",
+  "addToCart" : "Add to Cart",
+  "itsAlreadyAdded" : "It's already added",
   "theyResivedYourConsultationSuccessfully": "They resived your consultation successfully",
   "theyWillReciveYourConsultationIn": "They will recive your consultation in",
   "customize": "Customize"

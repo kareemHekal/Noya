@@ -8,9 +8,9 @@ import 'package:noya_app/core/utils/string_manager.dart';
 import 'package:noya_app/data/models/product.dart';
 import 'package:noya_app/presentation/package_details/view_model/pakage_details_cubit.dart';
 import 'package:noya_app/presentation/product_card/view_model/cubit/product_card_intent.dart';
-import 'package:noya_app/presentation/product_details.dart';
+import 'package:noya_app/presentation/product_card/product_details.dart';
 import 'package:shimmer/shimmer.dart';
-import 'cubit/product_card_cubit.dart';
+import 'view_model/cubit/product_card_cubit.dart';
 
 class ProductCard extends StatelessWidget {
   final num? productId;
@@ -97,7 +97,6 @@ class ProductCard extends StatelessWidget {
                     mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      // Product Image
                       Expanded(
                         child: ClipRRect(
                           borderRadius: const BorderRadius.only(

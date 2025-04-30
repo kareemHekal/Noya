@@ -85,7 +85,7 @@ class PackageDetailsCubit extends Cubit<PackageDetailsState> {
     try {
       return products.firstWhere((p) => p.productId == productId);
     } catch (e) {
-      return null; // لو المنتج مش موجود
+      return null;
     }
   }
 

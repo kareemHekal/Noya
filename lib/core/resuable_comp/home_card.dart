@@ -40,19 +40,35 @@ class HomeCard extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        label,
-                        style: const TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w500,
-                          color: Colors.white,
+                      SizedBox(
+                        width:
+                            MediaQuery.of(context).size.width *
+                            0.6, // or use Flexible
+
+                        child: Text(
+                          label,
+                          style: const TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.white,
+                          ),
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 1,
                         ),
                       ),
-                      Text(
-                        description,
-                        style: const TextStyle(
-                          fontSize: 12,
-                          color: Colors.white,
+                      SizedBox(
+                        width:
+                            MediaQuery.of(context).size.width *
+                            0.6, // or use Flexible
+
+                        child: Text(
+                          description,
+                          style: const TextStyle(
+                            fontSize: 12,
+                            color: Colors.white,
+                          ),
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 1,
                         ),
                       ),
                     ],

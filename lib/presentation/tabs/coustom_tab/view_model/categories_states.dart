@@ -8,6 +8,9 @@ sealed class CategoriesStates {}
 
 final class Initial extends CategoriesStates {}
 
+final class CategoriesUpdatedState extends CategoriesStates {}
+
+
 final class GetCategoriesSuccessState extends CategoriesStates {
   List<CategoriesResponse> categories;
 

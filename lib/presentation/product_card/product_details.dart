@@ -5,9 +5,8 @@ import 'package:noya_app/core/utils/colors_manager.dart';
 import 'package:noya_app/core/utils/string_manager.dart';
 import 'package:noya_app/data/models/product.dart';
 import 'package:shimmer/shimmer.dart';
-
-import '../core/resuable_comp/back_icon.dart';
-import 'package_details/view_model/pakage_details_cubit.dart';
+import '../../core/resuable_comp/back_icon.dart';
+import '../package_details/view_model/pakage_details_cubit.dart';
 
 class ProductDetailsPage extends StatefulWidget {
   final Product product;
@@ -47,7 +46,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
               CachedNetworkImage(
                 imageUrl:
                     widget.product.imageUrl ??
-                    "https://via.placeholder.com/400",
+                    "",
                 width: double.infinity,
                 height: 250,
                 fit: BoxFit.cover,
