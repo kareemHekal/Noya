@@ -28,7 +28,6 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     quantity = widget.product.quantity ?? 1;
     print(quantity);
@@ -141,15 +140,16 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                             children: [
                               IconButton(
                                 icon: const Icon(Icons.remove),
-                                onPressed: () {
+                                onPressed: currentQuantity > 1
+                                    ? () {
                                   setState(() {
                                     widget.packageDetailsCubit
-                                        .decreaseProductQuantity(
-                                          widget.product.productId!,
-                                        );
+                                        .decreaseProductQuantity(widget.product.productId!);
                                   });
-                                },
+                                }
+                                    : null,
                               ),
+
                               Text(
                                 currentQuantity.toString(),
                                 style: const TextStyle(fontSize: 16),

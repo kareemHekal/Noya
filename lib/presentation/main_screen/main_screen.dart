@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:noya_app/core/utils/colors_manager.dart';
 import 'package:noya_app/core/utils/string_manager.dart';
 import 'package:noya_app/presentation/tabs/Counsult.dart';
-import 'package:noya_app/presentation/tabs/Coustom.dart';
+import 'package:noya_app/presentation/tabs/coustom_tab/Coustom.dart';
 import 'package:noya_app/presentation/tabs/HomeScreen.dart';
 import 'package:noya_app/presentation/tabs/packages/Packages.dart';
 import 'package:noya_app/presentation/tabs/ProfileScreen.dart';

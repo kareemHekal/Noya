@@ -92,6 +92,7 @@
   "noProducts" : "No Products",
   "quantity" : "Quantity",
   "Description" : "Description",
+  "noProductsAvailable" : "No products available.",
   "inStock" : "in Stock",
   "theyResivedYourConsultationSuccessfully": "They resived your consultation successfully",
   "theyWillReciveYourConsultationIn": "They will recive your consultation in",
