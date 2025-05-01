@@ -162,7 +162,7 @@
                         ),
                         label: AppStrings.buttonViewPackages,
                         description: AppStrings.descriptionViewPackages,
-                        color: ColorManager.ligthBrown,
+                        color: ColorManager.pistachio,
                       ),
                       HomeCard(
                         onPressed: () {
@@ -175,7 +175,7 @@
                         label: AppStrings.buttonRequestConsultation,
                         description:
                             AppStrings.descriptionRequestConsultation,
-                        color: ColorManager.pistachio,
+                        color: ColorManager.mutedSageGreen,
                       ),
                       HomeCard(
                         onPressed: () {
@@ -187,7 +187,7 @@
                         ),
                         label: AppStrings.buttonBuildCustomPackage,
                         description: AppStrings.descriptionBuildCustomPackage,
-                        color: ColorManager.brown,
+                        color: ColorManager.oliveGreen,
                       ),
                       Text(AppStrings.alsoAvailableTitle),
                       Row(

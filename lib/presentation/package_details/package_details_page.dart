@@ -1,4 +1,3 @@
-import 'dart:ui';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -9,6 +8,7 @@ import 'package:noya_app/core/utils/string_manager.dart';
 import 'package:noya_app/data/models/bundle_response.dart';
 import 'package:noya_app/presentation/tabs/coustom_tab/Coustom.dart';
 import 'package:shimmer/shimmer.dart';
+import '../check_out_page/view/check_out_page.dart';
 import '../product_card/product_card.dart';
 import 'view_model/pakage_details_cubit.dart';
 
@@ -143,6 +143,29 @@ class PackageDetailsPage extends StatelessWidget {
             padding: const EdgeInsets.all(16),
             child: Row(
               children: [
+                Expanded(
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder:
+                              (context) => CheckOutPage(checkOutProducts: packageDetailsCubit.products,)
+                        ),
+                      );
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.grey.shade300,
+                      foregroundColor: Colors.black,
+                      padding: const EdgeInsets.symmetric(vertical: 16),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                    ),
+                    child:  Text(AppStrings.checkOut),
+                  ),
+                ),
+                const SizedBox(width: 16),
                 Expanded(
                   child: MyButton(
                     label: AppStrings.customize,

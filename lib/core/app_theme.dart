@@ -25,13 +25,13 @@ class MyTheme {
       ),
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
         selectedLabelStyle: TextStyle(
-          color: Colors.black,
+          color: ColorManager.oliveGreen,
           fontWeight: FontWeight.bold,
         ),
         selectedItemColor: ColorManager.oliveGreen,
         unselectedItemColor: Colors.grey,
         backgroundColor: Colors.white,
-        selectedIconTheme: IconThemeData(color: Colors.black),
+        selectedIconTheme: IconThemeData(color: ColorManager.oliveGreen),
         unselectedIconTheme: IconThemeData(color: Colors.grey),
       ),
     );

@@ -14,9 +14,11 @@ class PackageDetails extends StatelessWidget {
   BundleResponse bundleResponse;
   final PackageDetailsCubit packageDetailsCubit;
 
-  PackageDetails(
-      {required this.packageDetailsCubit, Key? key, required this.bundleResponse})
-      : super(key: key);
+  PackageDetails({
+    required this.packageDetailsCubit,
+    Key? key,
+    required this.bundleResponse,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +38,7 @@ class PackageDetails extends StatelessWidget {
               width: double.infinity,
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
               decoration: const BoxDecoration(
-                color: ColorManager.oliveGreen,
+                color: ColorManager.mutedSageGreen,
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(12),
                   topRight: Radius.circular(12),
@@ -60,8 +62,7 @@ class PackageDetails extends StatelessWidget {
                 imageUrl: bundleResponse.imageUrl ?? "",
                 fit: BoxFit.cover,
                 placeholder:
-                    (context, url) =>
-                    Shimmer.fromColors(
+                    (context, url) => Shimmer.fromColors(
                       baseColor: Colors.grey[300]!,
                       highlightColor: Colors.grey[100]!,
                       child: Container(
@@ -71,10 +72,9 @@ class PackageDetails extends StatelessWidget {
                       ),
                     ),
                 errorWidget:
-                    (context, url, error) =>
-                const Center(
-                  child: Icon(Icons.error, color: Colors.red),
-                ),
+                    (context, url, error) => const Center(
+                      child: Icon(Icons.error, color: Colors.red),
+                    ),
               ),
             ),
             // Content
@@ -123,23 +123,25 @@ class PackageDetails extends StatelessWidget {
 
                   // Buttons
                   Row(
-
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      MyButton(label: AppStrings.viewDetails, onPressed: () {
-                        packageDetailsCubit.products.clear();
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder:
-                                (context) =>
-                                PackageDetailsPage(
-                                  packageDetailsCubit:packageDetailsCubit,
-                                  bundle: bundleResponse,
-                                ),
-                          ),
-                        );
-                      },)
+                      MyButton(
+                        label: AppStrings.viewDetails,
+                        onPressed: () {
+                          packageDetailsCubit.products.clear();
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder:
+                                  (context) => PackageDetailsPage(
+                                    packageDetailsCubit: packageDetailsCubit,
+                                    bundle: bundleResponse,
+                                  ),
+                            ),
+                          );
+                        },
+                      ),
+
                     ],
                   ),
                 ],
