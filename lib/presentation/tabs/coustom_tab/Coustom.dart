@@ -147,9 +147,9 @@ class _CoustomOrderState extends State<CoustomOrder>
                             gridDelegate:
                                 const SliverGridDelegateWithFixedCrossAxisCount(
                                   crossAxisCount: 2,
-                                  crossAxisSpacing: 10,
-                                  mainAxisSpacing: 10,
-                                  childAspectRatio: 3 / 4,
+                                  crossAxisSpacing: 15,
+                                  mainAxisSpacing: 15,
+                                  childAspectRatio: 2 / 4,
                                 ),
                             itemBuilder: (context, index) {
                               final product = products[index];
