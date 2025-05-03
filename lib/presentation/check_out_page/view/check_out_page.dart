@@ -1,3 +1,4 @@
+// ignore: unused_import
 import 'package:animation_list/animation_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -9,6 +10,7 @@ import 'package:noya_app/core/utils/string_manager.dart';
 import 'package:noya_app/core/utils/text_style_manager.dart';
 import 'package:noya_app/data/models/product.dart';
 import 'package:noya_app/presentation/check_out_page/view_model/check_out_cubit.dart';
+import '../../payment/payment_page.dart';
 import 'check_out_product_card.dart';
 
 class CheckOutPage extends StatelessWidget {
@@ -21,13 +23,14 @@ class CheckOutPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-          leading: IconButton(onPressed: () {
-            Navigator.pushNamed(
-              context,
-              RouteManager.mainScreen,
-            );
-          }, icon: const Icon(Icons.arrow_back)),
-          title: Text(AppStrings.checkOut)),
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pushNamed(context, RouteManager.mainScreen);
+          },
+          icon: const Icon(Icons.arrow_back),
+        ),
+        title: Text(AppStrings.checkOut),
+      ),
       body: BlocProvider(
         create: (context) => CheckOutCubit()..init(checkOutProducts),
         child: BlocBuilder<CheckOutCubit, CheckOutStates>(
@@ -99,13 +102,11 @@ class CheckOutPage extends StatelessWidget {
                                     tybeMessage: TybeMessage.negative,
                                   );
                                 } else {
-                                  toastMessage(
-                                    message: AppStrings.yourOrderHasBeenSent,
-                                    tybeMessage: TybeMessage.positive,
-                                  );
-                                  Navigator.pushNamed(
+                                  Navigator.push(
                                     context,
-                                    RouteManager.mainScreen,
+                                    MaterialPageRoute(
+                                      builder: (context) => const PaymentPage(),
+                                    ),
                                   );
                                 }
                               },

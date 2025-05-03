@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:noya_app/core/di/di.dart';
-import 'package:noya_app/core/resuable_comp/package_card.dart';
+import 'package:noya_app/presentation/tabs/packages/package_card.dart';
 import 'package:noya_app/core/resuable_comp/toast_message.dart';
 import 'package:noya_app/core/utils/string_manager.dart';
 import 'package:animation_list/animation_list.dart';

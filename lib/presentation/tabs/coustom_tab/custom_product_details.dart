@@ -112,46 +112,49 @@ class _CustomProductDetailsPageState extends State<CustomProductDetailsPage> {
                     Row(
                       children: [
                         if (updatedProduct != null)
-                          Container(
-                            decoration: BoxDecoration(
-                              border: Border.all(color: Colors.grey),
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                            child: Row(
-                              children: [
-                                IconButton(
-                                  icon: const Icon(Icons.remove),
-                                  onPressed:
-                                      currentQuantity > 1
-                                          ? () {
-                                            setState(() {
-                                              widget.cubit
-                                                  .decreaseProductQuantity(
-                                                    widget.product.productId!,
-                                                  );
-                                            });
-                                          }
-                                          : null,
-                                ),
-                                Text(
-                                  currentQuantity.toString(),
-                                  style: const TextStyle(fontSize: 16),
-                                ),
-                                IconButton(
-                                  icon: const Icon(Icons.add),
-                                  onPressed: () {
-                                    setState(() {
-                                      widget.cubit.increaseProductQuantity(
-                                        widget.product.productId!,
-                                      );
-                                    });
-                                  },
-                                ),
-                              ],
+                          Padding(
+                            padding: const EdgeInsets.only(right: 16.0),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                border: Border.all(color: Colors.grey),
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              child: Row(
+                                children: [
+                                  IconButton(
+                                    icon: const Icon(Icons.remove),
+                                    onPressed:
+                                        currentQuantity > 1
+                                            ? () {
+                                              setState(() {
+                                                widget.cubit
+                                                    .decreaseProductQuantity(
+                                                      widget.product.productId!,
+                                                    );
+                                              });
+                                            }
+                                            : null,
+                                  ),
+                                  Text(
+                                    currentQuantity.toString(),
+                                    style: const TextStyle(fontSize: 16),
+                                  ),
+                                  IconButton(
+                                    icon: const Icon(Icons.add),
+                                    onPressed: () {
+                                      setState(() {
+                                        widget.cubit.increaseProductQuantity(
+                                          widget.product.productId!,
+                                        );
+                                      });
+                                    },
+                                  ),
+
+                                ],
+                              ),
                             ),
                           ),
 
-                        const SizedBox(width: 16),
                         Expanded(
                           child: MyButton(
                             label:updatedProduct == null? AppStrings.addToCart :AppStrings.removeFromCart,

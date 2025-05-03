@@ -5,9 +5,7 @@ import 'package:noya_app/core/api/api_excuter.dart';
 import 'package:noya_app/core/api/api_manager.dart';
 import 'package:noya_app/core/api/api_result.dart';
 import 'package:noya_app/core/api/endpoints.dart';
-import 'package:noya_app/data/models/bundle_response.dart';
 import 'package:noya_app/data/models/product.dart';
-import 'package:noya_app/domain/repo/bundel_list_repo.dart';
 import 'package:noya_app/domain/repo/prodct_by_id_repo.dart';
 
 @Injectable(as: ProductByIdRepo)

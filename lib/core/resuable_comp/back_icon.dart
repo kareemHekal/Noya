@@ -32,7 +32,7 @@ class BackIcon extends StatelessWidget {
                 },
                 icon: const Icon(
                   Icons.arrow_back_ios_new_outlined,
-                  color: ColorManager.mutedSageGreen,
+                  color: ColorManager.black,
                 ),
               ),
             ),

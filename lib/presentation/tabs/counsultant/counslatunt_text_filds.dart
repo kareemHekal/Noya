@@ -3,12 +3,14 @@ import 'package:noya_app/core/utils/colors_manager.dart';
 
 class CustomTextField extends StatelessWidget {
   final String label;
+  bool? isSecure ;
   final TextEditingController controller;
   final String? Function(String?)? validator;
 
-  const CustomTextField({
+   CustomTextField({
     required this.label,
     this.validator,
+    this.isSecure ,
     required this.controller,
     super.key,
   });
@@ -16,6 +18,7 @@ class CustomTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      obscureText: isSecure ?? false,
       validator: validator,
       controller: controller,
       decoration: InputDecoration(

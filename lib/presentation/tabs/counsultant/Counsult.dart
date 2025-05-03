@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:noya_app/core/resuable_comp/counslatunt_text_filds.dart';
+import 'package:noya_app/presentation/tabs/counsultant/counslatunt_text_filds.dart';
 import 'package:noya_app/core/resuable_comp/drop_down.dart';
 import 'package:noya_app/core/resuable_comp/myBotton.dart';
 import 'package:noya_app/core/resuable_comp/validator.dart';

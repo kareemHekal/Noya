@@ -1,15 +1,11 @@
 // ignore_for_file: unnecessary_import, non_constant_identifier_names, avoid_print
 
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:noya_app/core/api/api_result.dart';
-import 'package:noya_app/data/models/bundle_response.dart';
 import 'package:noya_app/data/models/product.dart';
-import 'package:noya_app/domain/usecases/get_bundle_list_usecase.dart';
 import 'package:noya_app/domain/usecases/get_product_by_id_usecase.dart';
-import 'package:noya_app/firebase/firebasefunctions.dart';
 import 'product_card_intent.dart';
 
 part 'product_card_state.dart';

@@ -1,6 +1,7 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+// ignore: unused_import
 import 'package:lottie/lottie.dart';
 import 'package:noya_app/core/app_theme.dart';
 import 'package:noya_app/core/provider.dart';

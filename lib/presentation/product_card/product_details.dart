@@ -1,6 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:noya_app/core/resuable_comp/myBotton.dart';
 import 'package:noya_app/core/utils/colors_manager.dart';
 import 'package:noya_app/core/utils/string_manager.dart';
 import 'package:noya_app/data/models/product.dart';
@@ -34,8 +33,9 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
 
   @override
   Widget build(BuildContext context) {
-    final updatedProduct = widget.packageDetailsCubit
-        .getProductById(widget.product.productId!);
+    final updatedProduct = widget.packageDetailsCubit.getProductById(
+      widget.product.productId!,
+    );
 
     final currentQuantity = updatedProduct?.quantity ?? quantity;
     return Scaffold(
@@ -44,9 +44,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
           Stack(
             children: [
               CachedNetworkImage(
-                imageUrl:
-                    widget.product.imageUrl ??
-                    "",
+                imageUrl: widget.product.imageUrl ?? "",
                 width: double.infinity,
                 height: 250,
                 fit: BoxFit.cover,
@@ -137,28 +135,42 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
                                 IconButton(
-                                  icon: const Icon(Icons.remove,size: 30,color:ColorManager.lightSand ,),
-                                  onPressed: currentQuantity > 1
-                                      ? () {
-                                    setState(() {
-                                      widget.packageDetailsCubit
-                                          .decreaseProductQuantity(widget.product.productId!);
-                                    });
-                                  }
-                                      : null,
+                                  icon: const Icon(
+                                    Icons.remove,
+                                    size: 30,
+                                    color: ColorManager.lightSand,
+                                  ),
+                                  onPressed:
+                                      currentQuantity > 1
+                                          ? () {
+                                            setState(() {
+                                              widget.packageDetailsCubit
+                                                  .decreaseProductQuantity(
+                                                    widget.product.productId!,
+                                                  );
+                                            });
+                                          }
+                                          : null,
                                 ),
                                 Text(
                                   currentQuantity.toString(),
-                                  style: const TextStyle(fontSize: 18, color: ColorManager.oliveGreen),
+                                  style: const TextStyle(
+                                    fontSize: 18,
+                                    color: ColorManager.oliveGreen,
+                                  ),
                                 ),
                                 IconButton(
-                                  icon: const Icon(Icons.add,size: 30,color:ColorManager.lightSand ,),
+                                  icon: const Icon(
+                                    Icons.add,
+                                    size: 30,
+                                    color: ColorManager.lightSand,
+                                  ),
                                   onPressed: () {
                                     setState(() {
                                       widget.packageDetailsCubit
                                           .increaseProductQuantity(
-                                        widget.product.productId!,
-                                      );
+                                            widget.product.productId!,
+                                          );
                                     });
                                     print(widget.packageDetailsCubit.products);
                                   },

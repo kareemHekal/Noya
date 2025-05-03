@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:noya_app/core/provider.dart';
 import 'package:noya_app/core/resuable_comp/myBotton.dart';
-import 'package:noya_app/core/resuable_comp/profile_card.dart';
+import 'package:noya_app/presentation/tabs/profile/profile_card.dart';
 import 'package:noya_app/core/utils/colors_manager.dart';
 import 'package:noya_app/core/utils/routes_manager.dart';
 import 'package:noya_app/core/utils/string_manager.dart';

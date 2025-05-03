@@ -8,7 +8,7 @@ import 'package:noya_app/presentation/package_details/package_details_page.dart'
 import 'package:noya_app/presentation/package_details/view_model/pakage_details_cubit.dart';
 import 'package:shimmer/shimmer.dart';
 
-import '../utils/colors_manager.dart' show ColorManager;
+import '../../../core/utils/colors_manager.dart' show ColorManager;
 
 class PackageDetails extends StatelessWidget {
   BundleResponse bundleResponse;

@@ -44,6 +44,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
     if (formKey.currentState!.validate()) {
       context.read<AuthCubit>().doIntent(
         RegisterUserIntent(
+          phoneNumber: phoneController.text,
           email: emailController.text,
           password: passwordController.text,
           userName: firstNameController.text,
@@ -68,8 +69,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               tybeMessage: TybeMessage.positive,
             );
             toastMessage(
-              message:
-              AppStrings.verificationEmailSent,
+              message: AppStrings.verificationEmailSent,
               tybeMessage: TybeMessage.positive,
             );
           }
@@ -145,7 +145,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               // how much the shadow will spread
                               blurRadius: 8,
                               // how blurry the shadow is
-                              offset: const Offset(0, 4), // position of the shadow
+                              offset: const Offset(
+                                0,
+                                4,
+                              ), // position of the shadow
                             ),
                           ],
                         ),
@@ -161,7 +164,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     TextFormField(
                                       controller: firstNameController,
                                       validator: Validator.firstName,
-                                      decoration:  InputDecoration(
+                                      decoration: InputDecoration(
                                         hintText: AppStrings.firstNameHint,
                                       ),
                                     ),
@@ -169,7 +172,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     TextFormField(
                                       controller: lastNameController,
                                       validator: Validator.lastName,
-                                      decoration:  InputDecoration(
+                                      decoration: InputDecoration(
                                         hintText: AppStrings.lastNameHint,
                                       ),
                                     ),
@@ -177,7 +180,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     TextFormField(
                                       controller: emailController,
                                       validator: Validator.email,
-                                      decoration:  InputDecoration(
+                                      decoration: InputDecoration(
                                         hintText: AppStrings.emailHint,
                                       ),
                                     ),
@@ -213,8 +216,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                         return null;
                                       },
                                       obscureText: !_isPasswordVisible,
-                                      decoration:  InputDecoration(
-                                        hintText: AppStrings.reenterPasswordHint,
+                                      decoration: InputDecoration(
+                                        hintText:
+                                            AppStrings.reenterPasswordHint,
                                       ),
                                     ),
                                     const SizedBox(height: 15),
@@ -223,7 +227,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                       validator: Validator.phoneNumber,
                                       keyboardType:
                                           const TextInputType.numberWithOptions(),
-                                      decoration:  InputDecoration(
+                                      decoration: InputDecoration(
                                         hintText: AppStrings.phoneNumberHint,
                                       ),
                                     ),
@@ -243,7 +247,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                           child: MyButton(
                                             label:
                                                 state is RegisterViewModelLoading
-                                                    ? AppStrings.creatingAccountLoading
+                                                    ? AppStrings
+                                                        .creatingAccountLoading
                                                     : AppStrings.signUp,
                                             onPressed:
                                                 state is RegisterViewModelLoading

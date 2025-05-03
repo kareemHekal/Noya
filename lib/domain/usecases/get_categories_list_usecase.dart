@@ -2,9 +2,7 @@
 
 import 'package:injectable/injectable.dart';
 import 'package:noya_app/core/api/api_result.dart';
-import 'package:noya_app/data/models/bundle_response.dart';
 import 'package:noya_app/data/models/categories_response.dart';
-import 'package:noya_app/domain/repo/bundel_list_repo.dart';
 import 'package:noya_app/domain/repo/categories_list_repo.dart';
 
 @injectable

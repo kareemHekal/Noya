@@ -6,13 +6,13 @@ class FirebaseFunctions {
   // =============================== Authentication Functions ===============================
 
   /// Creates a new account in Firebase and saves the user data
-  static createAccount(
-      String emailAddress,
-      String password, {
-        required Function onSucsses,
-        required Function onEror,
-        required String Username,
-      }) async {
+  static createAccount({required String emailAddress,
+    required String password,
+    required String phoneNumber,
+    required Function onSucsses,
+    required Function onEror,
+    required String Username,
+  }) async {
     try {
       final credential = await FirebaseAuth.instance
           .createUserWithEmailAndPassword(
@@ -21,6 +21,7 @@ class FirebaseFunctions {
       );
       credential.user?.sendEmailVerification();
       Usermodel user = Usermodel(
+        phoneNumber: phoneNumber,
         id: credential.user!.uid,
         name: Username,
         email: emailAddress,

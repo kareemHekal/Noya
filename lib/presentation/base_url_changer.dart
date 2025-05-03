@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:noya_app/core/provider.dart';
-import 'package:noya_app/core/resuable_comp/counslatunt_text_filds.dart';
+import 'package:noya_app/presentation/tabs/counsultant/counslatunt_text_filds.dart';
 import 'package:noya_app/core/resuable_comp/myBotton.dart';
 import 'package:noya_app/core/resuable_comp/toast_message.dart';
 import 'package:noya_app/core/shared_prefrnces.dart';

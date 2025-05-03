@@ -5,24 +5,24 @@ import 'package:noya_app/core/api/api_excuter.dart';
 import 'package:noya_app/core/api/api_manager.dart';
 import 'package:noya_app/core/api/api_result.dart';
 import 'package:noya_app/core/api/endpoints.dart';
-import 'package:noya_app/data/models/categories_response.dart';
-import 'package:noya_app/domain/repo/categories_list_repo.dart';
+import 'package:noya_app/data/models/material_model.dart';
+import 'package:noya_app/domain/repo/materials_list_repo.dart';
 
-@Injectable(as: CategoriesRepo)
-class CategoriesListRepoImpl implements CategoriesRepo {
+@Injectable(as: MaterialsRepo)
+class CategoriesListRepoImpl implements MaterialsRepo {
   final ApiManager apiManager;
 
   @factoryMethod
   CategoriesListRepoImpl(this.apiManager);
 
   @override
-  Future<ApiResult<List<CategoriesResponse>>> getList() async {
-    return await executeApi<List<CategoriesResponse>>(() async {
+  Future<ApiResult<List<MaterialModel>>> getList() async {
+    return await executeApi<List<MaterialModel>>(() async {
       var apiResponse = await apiManager.getRequest(
-        endpoint: EndPoint.categoriesEndpoint,
+        endpoint: EndPoint.materialEndpoint,
       );
       var result = (apiResponse.data as List)
-          .map((item) => CategoriesResponse.fromJson(item))
+          .map((item) => MaterialModel.fromJson(item))
           .toList();
       return result;
     });
