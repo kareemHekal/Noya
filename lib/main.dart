@@ -10,6 +10,7 @@ import 'core/di/di.dart';
 import 'core/observer/bloc_observer.dart';
 import 'my_app.dart';
 import 'presentation/auth/view_model/cubit/auth_cubit.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,6 +22,7 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   final authCubit = getIt<AuthCubit>();
+  FlutterNativeSplash.remove();
   runApp(
     EasyLocalization(
       supportedLocales: const [Locale('en'), Locale('ar')],
