@@ -11,11 +11,20 @@ class DataProvider extends ChangeNotifier {
   String get baseUrl => _baseUrl;
 
   DataProvider() {
-    firebaseUser = FirebaseAuth.instance.currentUser;
     _loadBaseUrl();
-    if (firebaseUser != null) {
-      initUser();
-    }
+    _init();
+  }
+
+  void _init() {
+    Future.microtask(() async {
+      firebaseUser = FirebaseAuth.instance.currentUser;
+      if (firebaseUser != null) {
+        print("Firebase user found: ${firebaseUser!.email}");
+        await initUser();
+      } else {
+        print("Firebase user is null");
+      }
+    });
   }
 
   void _loadBaseUrl() async {
@@ -32,8 +41,10 @@ class DataProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  initUser() async {
+  Future<void> initUser() async {
+    print("Fetching user data...");
     usermodel = await FirebaseFunctions.ReadUserData();
+    print("User data fetched: $usermodel");
     notifyListeners();
   }
 }

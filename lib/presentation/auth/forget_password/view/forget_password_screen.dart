@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:noya_app/core/resuable_comp/toast_message.dart';
@@ -77,22 +78,26 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                             children: [
                               const Expanded(
                                 child: Divider(
-                                  color: ColorManager.white60,
+                                  color: ColorManager.mutedSageGreen,
                                   thickness: 2,
                                 ),
                               ),
                               Expanded(
-                                child: Image.asset("assets/images/logo.png"),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(12.0),
+                                  child: Image.asset("assets/images/logoo.png"),
+                                ),
                               ),
                               const Expanded(
                                 child: Divider(
-                                  color: ColorManager.white60,
+                                  color: ColorManager.mutedSageGreen,
                                   thickness: 2,
                                 ),
                               ),
                             ],
                           ),
-                           Text(
+
+                          Text(
                             AppStrings.forgotYourPassword,
                             style: const TextStyle(
                               fontSize: 30,
@@ -105,7 +110,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                             style: const TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.w400,
-                              color: ColorManager.white70,
+                              color: ColorManager.mutedSageGreen,
                             ),
                           ),
                         ],
@@ -131,7 +136,9 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                           child: Column(
                             children: [
                               Padding(
-                                padding: const EdgeInsets.only(left: 20),
+                                padding: context.locale == const Locale('en')
+                                    ? const EdgeInsets.only(left: 20)
+                                    : const EdgeInsets.only(right: 20),
                                 child: Column(
                                   children: [
                                     const SizedBox(height: 15),

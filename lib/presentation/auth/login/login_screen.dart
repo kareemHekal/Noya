@@ -1,4 +1,4 @@
-
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:noya_app/core/resuable_comp/myBotton.dart';
@@ -72,31 +72,35 @@ class _SignInScreenState extends State<SignInScreen> {
                             children: [
                               const Expanded(
                                 child: Divider(
-                                  color: ColorManager.white60,
+                                  color: ColorManager.mutedSageGreen,
                                   thickness: 2,
                                 ),
                               ),
                               Expanded(
-                                child: Image.asset("assets/images/logo.png"),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(12.0),
+                                  child: Image.asset("assets/images/logoo.png"),
+                                ),
                               ),
                               const Expanded(
                                 child: Divider(
-                                  color: ColorManager.white60,
+                                  color: ColorManager.mutedSageGreen,
                                   thickness: 2,
                                 ),
                               ),
                             ],
                           ),
-                           Text(
+
+                          Text(
                             AppStrings.hello,
                             style: const TextStyle(
                               fontSize: 30,
                               fontWeight: FontWeight.bold,
-                              color: ColorManager.white70,
+                              color: ColorManager.mutedSageGreen,
                             ),
                           ),
-                           Text(
-                             AppStrings.welcomeBack,
+                          Text(
+                            AppStrings.welcomeBack,
                             style: const TextStyle(
                               fontSize: 30,
                               fontWeight: FontWeight.bold,
@@ -126,7 +130,10 @@ class _SignInScreenState extends State<SignInScreen> {
                           child: Column(
                             children: [
                               Padding(
-                                padding: const EdgeInsets.only(left: 20),
+                                padding:
+                                    context.locale == const Locale('en')
+                                        ? const EdgeInsets.only(left: 20)
+                                        : const EdgeInsets.only(right: 20),
                                 child: Column(
                                   spacing: 10,
                                   children: [
@@ -135,7 +142,7 @@ class _SignInScreenState extends State<SignInScreen> {
                                       validator: Validator.email,
                                       controller: emailController,
                                       cursorColor: Colors.black,
-                                      decoration:  InputDecoration(
+                                      decoration: InputDecoration(
                                         hintText: AppStrings.emailHint,
                                       ),
                                     ),
@@ -149,11 +156,14 @@ class _SignInScreenState extends State<SignInScreen> {
                                         hintText: AppStrings.passwordHint,
                                         suffixIcon: IconButton(
                                           icon: Icon(
-                                            _isPasswordVisible ? Icons.visibility : Icons.visibility_off,
+                                            _isPasswordVisible
+                                                ? Icons.visibility
+                                                : Icons.visibility_off,
                                           ),
                                           onPressed: () {
                                             setState(() {
-                                              _isPasswordVisible = !_isPasswordVisible;
+                                              _isPasswordVisible =
+                                                  !_isPasswordVisible;
                                             });
                                           },
                                         ),
@@ -173,7 +183,7 @@ class _SignInScreenState extends State<SignInScreen> {
                                         RouteManager.forgetPasswordScreen,
                                       );
                                     },
-                                    child:  Text(
+                                    child: Text(
                                       AppStrings.forgotPassword,
                                       style: const TextStyle(
                                         color: ColorManager.black,
@@ -188,15 +198,21 @@ class _SignInScreenState extends State<SignInScreen> {
                                       children: [
                                         Expanded(
                                           child: MyButton(
-                                            label: state is LoginLoadingState
-                                                ? AppStrings.loggingIn
-                                                : AppStrings.logIn, // Show loading text
-                                            onPressed: state is LoginLoadingState
-                                                ? null
-                                                : () {
-                                              _validateAndLogin(context);
-                                            },
-                                            isLoading: state is LoginLoadingState,
+                                            label:
+                                                state is LoginLoadingState
+                                                    ? AppStrings.loggingIn
+                                                    : AppStrings.logIn,
+                                            // Show loading text
+                                            onPressed:
+                                                state is LoginLoadingState
+                                                    ? null
+                                                    : () {
+                                                      _validateAndLogin(
+                                                        context,
+                                                      );
+                                                    },
+                                            isLoading:
+                                                state is LoginLoadingState,
                                           ),
                                         ),
                                       ],
@@ -209,7 +225,7 @@ class _SignInScreenState extends State<SignInScreen> {
                                         RouteManager.registerScreen,
                                       );
                                     },
-                                    child:  Text(
+                                    child: Text(
                                       AppStrings.signUp,
                                       style: const TextStyle(
                                         fontWeight: FontWeight.w500,

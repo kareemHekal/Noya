@@ -12,12 +12,22 @@ import 'package:noya_app/presentation/Language_bottom_sheet/bottom_sheet.dart';
 import 'package:noya_app/presentation/base_url_changer.dart';
 import 'package:provider/provider.dart';
 
-class ProfileScreen extends StatelessWidget {
+class ProfileScreen extends StatefulWidget {
   ProfileScreen({super.key});
 
+  @override
+  State<ProfileScreen> createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
+  @override
+  void initState() {
+    super.initState();
+    Future.microtask(() =>
+        Provider.of<DataProvider>(context, listen: false).initUser());
+  }
+
   Widget build(BuildContext context) {
-    var dataprovider = Provider.of<DataProvider>(context);
-    Usermodel? usermodel = dataprovider.usermodel;
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -34,77 +44,85 @@ class ProfileScreen extends StatelessWidget {
         centerTitle: true,
         title: Text(AppStrings.profileLabel),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          spacing: 20,
-          mainAxisSize: MainAxisSize.max,
-          children: [
-            Row(
+      body: Consumer<DataProvider>(
+        builder: (context, dataProvider, _) {
+          final user = dataProvider.usermodel;
+
+          if (user == null) {
+            return const Center(child: CircularProgressIndicator(color: ColorManager.oliveGreen,));
+          }
+
+          return Padding(
+            padding: const EdgeInsets.all(16),
+            child: Column(
               spacing: 20,
+              mainAxisSize: MainAxisSize.max,
               children: [
-                const CircleAvatar(
-                  radius: 35,
-                  child: Icon(
-                    Icons.person_2_outlined,
-                    color: ColorManager.oliveGreen,
-                    size: 30,
-                  ),
-                  backgroundColor: ColorManager.lightSand,
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                Row(
+                  spacing: 20,
                   children: [
-                    Text(
-                      usermodel?.name ?? "User",
-                      style: AppTextStyle.medium20,
+                    const CircleAvatar(
+                      radius: 35,
+                      child: Icon(
+                        Icons.person_2_outlined,
+                        color: ColorManager.oliveGreen,
+                        size: 30,
+                      ),
+                      backgroundColor: ColorManager.lightSand,
                     ),
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.6, // or use Flexible
-                      child: Text(
-                        usermodel?.email ?? "User",
-                        style: AppTextStyle.medium16.copyWith(
-                          color: ColorManager.white80,
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(user.name , style: AppTextStyle.medium20),
+                        SizedBox(
+                          width:
+                              MediaQuery.of(context).size.width *
+                              0.6, // or use Flexible
+                          child: Text(
+                            user.email ,
+                            style: AppTextStyle.medium16.copyWith(
+                              color: ColorManager.white80,
+                            ),
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 1,
+                          ),
                         ),
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 1,
+                      ],
+                    ),
+                  ],
+                ),
+                ProfileCard(label: AppStrings.myOrders, onPressed: () {}),
+                ProfileCard(
+                  label: AppStrings.language,
+                  onPressed: () {
+                    showModalBottomSheet(
+                      context: context,
+                      backgroundColor: Colors.transparent,
+                      builder: (context) => const LanguageBottomSheet(),
+                    );
+                  },
+                ),
+                Row(
+                  children: [
+                    Expanded(
+                      child: MyButton(
+                        label: AppStrings.logout,
+                        onPressed: () {
+                          FirebaseAuth.instance.signOut();
+                          Navigator.pushNamedAndRemoveUntil(
+                            context,
+                            RouteManager.loginScreen,
+                            (route) => false,
+                          );
+                        },
                       ),
                     ),
-
                   ],
                 ),
               ],
             ),
-            ProfileCard(label: AppStrings.myOrders, onPressed: () {}),
-            ProfileCard(
-              label: AppStrings.language,
-              onPressed: () {
-                showModalBottomSheet(
-                  context: context,
-                  backgroundColor: Colors.transparent,
-                  builder: (context) => const LanguageBottomSheet(),
-                );
-              },
-            ),
-            Row(
-              children: [
-                Expanded(
-                  child: MyButton(
-                    label: AppStrings.logout,
-                    onPressed: () {
-                      FirebaseAuth.instance.signOut();
-                      Navigator.pushNamedAndRemoveUntil(
-                        context,
-                        RouteManager.loginScreen,
-                        (route) => false,
-                      );
-                    },
-                  ),
-                ),
-              ],
-            ),
-          ],
-        ),
+          );
+        },
       ),
     );
   }
