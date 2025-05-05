@@ -64,21 +64,25 @@ class HomeScreen extends StatelessWidget {
                     ),
                   ),
                   child: Container(
+
                     width: double.infinity,
                     alignment: Alignment.bottomCenter,
                     padding: const EdgeInsets.all(16),
                     child: Column(
-                      spacing: 10,
                       mainAxisAlignment: MainAxisAlignment.end,
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Text(
-                          AppStrings.titleNoya,
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 24,
-                            fontWeight: FontWeight.bold,
+                        const Expanded(child: SizedBox()),
+                        Expanded(
+                          child: Text(
+                            AppStrings.titleNoya,
+                            style: TextStyle(
+                              color: ColorManager.lightSand.withOpacity(0.6), // Adjust opacity here
+                              fontSize: 60,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
+
                         ),
                         Text(
                           AppStrings.subtitleInteriorDesign,
@@ -99,6 +103,7 @@ class HomeScreen extends StatelessWidget {
                         const SizedBox(height: 10),
                       ],
                     ),
+
                   ),
                 ),
               ),

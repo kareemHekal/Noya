@@ -67,8 +67,8 @@ class Validator {
     if (value == null || value.isEmpty) {
       return "Phone number can't be empty";
     }
-    if (value.length > 20) {
-      return "Phone number cannot be more than 20 characters";
+    if (value.length != 11) {
+      return "Phone number must 11 numbers";
     }
     return null;
   }

@@ -34,7 +34,8 @@ class _WorkersScreenState extends State<WorkersScreen> {
         _showClearButton = query.isNotEmpty;
         filteredWorkers = cubit.workers
             .where(
-              (worker) => worker.name?.toLowerCase().contains(query) ?? false,
+              (worker) => (worker.name?.toLowerCase().contains(query) ?? false) ||
+              (worker.specialization?.toLowerCase().contains(query) ?? false),
         )
             .toList();
       });

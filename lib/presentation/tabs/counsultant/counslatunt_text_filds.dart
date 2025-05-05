@@ -3,14 +3,16 @@ import 'package:noya_app/core/utils/colors_manager.dart';
 
 class CustomTextField extends StatelessWidget {
   final String label;
-  bool? isSecure ;
+  bool? isSecure;
+  bool? isPhoneNumber;
   final TextEditingController controller;
   final String? Function(String?)? validator;
 
-   CustomTextField({
+  CustomTextField({
     required this.label,
     this.validator,
-    this.isSecure ,
+    this.isSecure,
+    this.isPhoneNumber,
     required this.controller,
     super.key,
   });
@@ -18,6 +20,8 @@ class CustomTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      keyboardType:
+          isPhoneNumber ?? false ? TextInputType.phone : TextInputType.text,
       obscureText: isSecure ?? false,
       validator: validator,
       controller: controller,
@@ -26,21 +30,18 @@ class CustomTextField extends StatelessWidget {
         labelStyle: TextStyle(color: Colors.grey[600]),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12.0),
-          borderSide: const BorderSide(
-            color: Colors.black87,
-            width: 1,
-          ),
+          borderSide: const BorderSide(color: Colors.black87, width: 1),
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12.0),
-          borderSide: const BorderSide(color: ColorManager.oliveGreen, width: 2),
+          borderSide: const BorderSide(
+            color: ColorManager.oliveGreen,
+            width: 2,
+          ),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12.0),
-          borderSide: const BorderSide(
-            color: Colors.black,
-            width: 2.0,
-          ),
+          borderSide: const BorderSide(color: Colors.black, width: 2.0),
         ),
         errorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12.0),

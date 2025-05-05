@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:noya_app/presentation/tabs/counsultant/counslatunt_text_filds.dart';
 import 'package:noya_app/core/resuable_comp/drop_down.dart';
 import 'package:noya_app/core/resuable_comp/myBotton.dart';
@@ -6,6 +7,7 @@ import 'package:noya_app/core/resuable_comp/validator.dart';
 import 'package:noya_app/core/utils/colors_manager.dart';
 import 'package:noya_app/core/utils/string_manager.dart';
 import 'package:noya_app/core/utils/text_style_manager.dart';
+import 'package:noya_app/presentation/timer/view_model/cubit.dart';
 import 'package:noya_app/presentation/timer_page.dart';
 
 class Counsult extends StatefulWidget {
@@ -92,6 +94,7 @@ class _CounsultState extends State<Counsult> {
                     const SizedBox(width: 12),
                     Expanded(
                       child: CustomTextField(
+                        isPhoneNumber: true,
                         label: AppStrings.phoneNumberHint,
                         controller: _phoneNumberController,
                         validator: Validator.phoneNumber,
@@ -179,8 +182,14 @@ class _CounsultState extends State<Counsult> {
                         if (_formKey.currentState!.validate()) {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => const TimerPage()),
+                            MaterialPageRoute(
+                              builder: (_) => BlocProvider(
+                                create: (_) => TimerCubit(),
+                                child: const TimerPage(),
+                              ),
+                            ),
                           );
+
                           print('Submit form logic here');
                         }
                       },

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:noya_app/core/provider.dart';
 import 'package:noya_app/firebase/firebase_options.dart';
+import 'package:noya_app/presentation/timer/view_model/cubit.dart';
 import 'package:provider/provider.dart';
 import 'core/api/api_manager.dart';
 import 'core/di/di.dart';
@@ -33,6 +34,7 @@ void main() async {
         providers: [
           ChangeNotifierProvider(create: (context) => DataProvider()),
           BlocProvider<AuthCubit>(create: (context) => authCubit),
+          BlocProvider<TimerCubit>(create: (context) => TimerCubit()),
         ],
         child: const MyApp(),
       ),
