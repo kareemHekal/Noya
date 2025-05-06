@@ -15,8 +15,9 @@ import 'package:noya_app/presentation/tabs/coustom_tab/view_model/categories_cub
 
 class CoustomOrder extends StatefulWidget {
   List<Product>? products;
+  num? bundlePrice;
 
-  CoustomOrder({this.products, super.key});
+  CoustomOrder({this.bundlePrice, this.products, super.key});
 
   @override
   State<CoustomOrder> createState() => _CoustomOrderState();
@@ -107,21 +108,21 @@ class _CoustomOrderState extends State<CoustomOrder>
                             const Spacer(),
                             MyButton(
                               label: AppStrings.checkOut,
-                              onPressed:
-                                  cubit.itemsCount == 0
-                                      ? null
-                                      : () {
-                                        Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder:
-                                                (context) => CheckOutPage(
-                                                  checkOutProducts:
-                                                      cubit.selectedProducts,
-                                                ),
-                                          ),
-                                        );
-                                      },
+                              onPressed: (cubit.itemsCount == 0 ||
+                                  (widget.bundlePrice != null &&
+                                      cubit.total < widget.bundlePrice!))
+                                  ? null
+                                  : () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => CheckOutPage(
+                                      checkOutProducts: cubit.selectedProducts,
+                                    ),
+                                  ),
+                                );
+                              },
+
                             ),
                           ],
                         ),

@@ -38,7 +38,8 @@ class PackageDetailsPage extends StatelessWidget {
                       imageUrl: bundle.imageUrl ?? "",
                       fit: BoxFit.cover,
                       placeholder:
-                          (context, url) => Shimmer.fromColors(
+                          (context, url) =>
+                          Shimmer.fromColors(
                             baseColor: Colors.grey[300]!,
                             highlightColor: Colors.grey[100]!,
                             child: Container(
@@ -47,9 +48,10 @@ class PackageDetailsPage extends StatelessWidget {
                             ),
                           ),
                       errorWidget:
-                          (context, url, error) => const Center(
-                            child: Icon(Icons.error, color: Colors.red),
-                          ),
+                          (context, url, error) =>
+                      const Center(
+                        child: Icon(Icons.error, color: Colors.red),
+                      ),
                     ),
                   ),
                 // Name and price above image
@@ -107,36 +109,36 @@ class PackageDetailsPage extends StatelessWidget {
           // Product list
           bundle.bundleItems?.isNotEmpty == true
               ? Expanded(
-                flex: 3,
-                child: GridView.builder(
-                  shrinkWrap: true,
-                  padding: const EdgeInsets.all(8),
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    crossAxisSpacing: 10,
-                    mainAxisSpacing: 10,
-                    childAspectRatio: 0.7,
-                  ),
-                  itemCount: bundle.bundleItems!.length,
-                  itemBuilder: (context, index) {
-                    final item = bundle.bundleItems![index];
-                    return ProductCard(
-                      packageDetailsCubit: packageDetailsCubit,
-                      quantity: item.quantity,
-                      productId: item.productId,
-                    );
-                  },
-                ),
-              )
-              : Center(
-                child: Text(
-                  AppStrings.noProducts,
-                  style: const TextStyle(
-                    color: ColorManager.oliveGreen,
-                    fontSize: 20,
-                  ),
-                ),
+            flex: 3,
+            child: GridView.builder(
+              shrinkWrap: true,
+              padding: const EdgeInsets.all(8),
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                crossAxisSpacing: 10,
+                mainAxisSpacing: 10,
+                childAspectRatio: 0.7,
               ),
+              itemCount: bundle.bundleItems!.length,
+              itemBuilder: (context, index) {
+                final item = bundle.bundleItems![index];
+                return ProductCard(
+                  packageDetailsCubit: packageDetailsCubit,
+                  quantity: item.quantity,
+                  productId: item.productId,
+                );
+              },
+            ),
+          )
+              : Center(
+            child: Text(
+              AppStrings.noProducts,
+              style: const TextStyle(
+                color: ColorManager.oliveGreen,
+                fontSize: 20,
+              ),
+            ),
+          ),
 
           Padding(
             padding: const EdgeInsets.all(16),
@@ -148,8 +150,11 @@ class PackageDetailsPage extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder:
-                              (context) => CheckOutPage(checkOutProducts: packageDetailsCubit.products,)
+                            builder:
+                                (context) =>
+                                CheckOutPage(
+                                  checkOutProducts: packageDetailsCubit
+                                      .products,)
                         ),
                       );
                     },
@@ -161,7 +166,7 @@ class PackageDetailsPage extends StatelessWidget {
                         borderRadius: BorderRadius.circular(12),
                       ),
                     ),
-                    child:  Text(AppStrings.checkOut),
+                    child: Text(AppStrings.checkOut),
                   ),
                 ),
                 const SizedBox(width: 16),
@@ -172,8 +177,11 @@ class PackageDetailsPage extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder:
-                              (context) => CoustomOrder(products: packageDetailsCubit.products,)
+                            builder:
+                                (context) =>
+                                CoustomOrder(
+                                  products: packageDetailsCubit.products,
+                                  bundlePrice:bundle.price,)
                         ),
                       );
                     },
