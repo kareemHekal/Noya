@@ -19,7 +19,6 @@ class Packages extends StatelessWidget {
     final packageCubit = getIt<PackageDetailsCubit>();
 
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
         forceMaterialTransparency: true,
         title: Text(AppStrings.homePackages),

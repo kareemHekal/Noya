@@ -15,7 +15,7 @@ class MaterialCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: Colors.white,
+      color: ColorManager.softBeige,
       elevation: 4,
       margin: const EdgeInsets.all(10),
       child: Padding(
@@ -36,6 +36,7 @@ class MaterialCard extends StatelessWidget {
                       child: Text(
                         material.name ?? "",
                         style: const TextStyle(
+                          color: ColorManager.black,
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
                         ),
@@ -54,7 +55,6 @@ class MaterialCard extends StatelessWidget {
                           ),
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
-
                         ),
                       ),
                     ),
@@ -91,22 +91,20 @@ class MaterialCard extends StatelessWidget {
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(8),
                           child: CachedNetworkImage(
-                            imageUrl:
-                            material.imageUrl ??
-                                "",
+                            imageUrl: material.imageUrl ?? "",
                             width: double.infinity,
                             fit: BoxFit.cover,
                             height: 100,
                             placeholder:
                                 (context, url) => Shimmer.fromColors(
-                              baseColor: Colors.grey[300]!,
-                              highlightColor: Colors.grey[100]!,
-                              child: Container(color: Colors.white),
-                            ),
+                                  baseColor: Colors.grey[300]!,
+                                  highlightColor: Colors.grey[100]!,
+                                  child: Container(color: Colors.white),
+                                ),
                             errorWidget:
                                 (context, url, error) => const Center(
-                              child: Icon(Icons.error, color: Colors.red),
-                            ),
+                                  child: Icon(Icons.error, color: Colors.red),
+                                ),
                           ),
                         ),
                       ),

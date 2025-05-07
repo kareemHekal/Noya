@@ -56,7 +56,6 @@ class _CoustomOrderState extends State<CoustomOrder>
           }
         },
         child: Scaffold(
-          backgroundColor: Colors.white,
           appBar: AppBar(
             forceMaterialTransparency: true,
             title: Text(

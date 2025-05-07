@@ -21,11 +21,14 @@ class CheckOutPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
         leading: IconButton(
           onPressed: () {
-            Navigator.pushNamed(context, RouteManager.mainScreen);
+            Navigator.pushNamedAndRemoveUntil(
+              context,
+              RouteManager.mainScreen,
+              (route) => false,
+            );
           },
           icon: const Icon(Icons.arrow_back),
         ),

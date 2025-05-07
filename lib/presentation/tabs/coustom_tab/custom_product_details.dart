@@ -1,11 +1,13 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:noya_app/core/provider.dart';
 import 'package:noya_app/core/resuable_comp/back_icon.dart';
 import 'package:noya_app/core/resuable_comp/myBotton.dart';
 import 'package:noya_app/core/utils/colors_manager.dart';
 import 'package:noya_app/core/utils/string_manager.dart';
 import 'package:noya_app/data/models/product.dart';
 import 'package:noya_app/presentation/tabs/coustom_tab/view_model/categories_cubit.dart';
+import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
 
 class CustomProductDetailsPage extends StatefulWidget {
@@ -30,6 +32,7 @@ class _CustomProductDetailsPageState extends State<CustomProductDetailsPage> {
       widget.product.productId!,
     );
     var currentQuantity = updatedProduct?.quantity ?? 1;
+    var dataProvider = Provider.of<DataProvider>(context);
 
     return Scaffold(
       body: Column(
@@ -57,7 +60,8 @@ class _CustomProductDetailsPageState extends State<CustomProductDetailsPage> {
           ),
           Expanded(
             child: Container(
-              color: ColorManager.lightSand,
+              color: dataProvider.isDarkMode
+                  ? ColorManager.deepCharcoalWithGreenHint: ColorManager.lightSand,
               child: Padding(
                 padding: const EdgeInsets.all(16),
                 child: Column(
@@ -73,7 +77,8 @@ class _CustomProductDetailsPageState extends State<CustomProductDetailsPage> {
                     const SizedBox(height: 8),
                     Text(
                       widget.product.category ?? "Category",
-                      style: TextStyle(fontSize: 16, color: Colors.grey[600]),
+                      style: TextStyle(fontSize: 16, color: !dataProvider.isDarkMode
+                          ? ColorManager.deepCharcoalWithGreenHint: ColorManager.lightSand,),
                     ),
                     const SizedBox(height: 16),
                     Row(
@@ -90,7 +95,8 @@ class _CustomProductDetailsPageState extends State<CustomProductDetailsPage> {
                           "${widget.product.stock ?? 0} ${AppStrings.inStock}",
                           style: TextStyle(
                             fontSize: 16,
-                            color: Colors.grey[600],
+                              color: !dataProvider.isDarkMode
+                                  ? ColorManager.deepCharcoalWithGreenHint: ColorManager.lightSand,
                           ),
                         ),
                       ],
@@ -106,7 +112,8 @@ class _CustomProductDetailsPageState extends State<CustomProductDetailsPage> {
                     const SizedBox(height: 8),
                     Text(
                       widget.product.description ?? "No description available",
-                      style: TextStyle(fontSize: 16, color: Colors.grey[700]),
+                      style: TextStyle(fontSize: 16,color: !dataProvider.isDarkMode
+                      ? ColorManager.deepCharcoalWithGreenHint: ColorManager.lightSand,),
                     ),
                     const Spacer(),
                     Row(

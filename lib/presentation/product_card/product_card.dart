@@ -86,7 +86,7 @@ class ProductCard extends StatelessWidget {
                   );
                 },
                 child: Card(
-                  color: ColorManager.lightSand,
+                  color: ColorManager.softBeige,
                   margin: const EdgeInsets.all(8),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12),

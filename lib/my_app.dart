@@ -19,13 +19,14 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var dataprovider = Provider.of<DataProvider>(context);
-
+    var dataProvider = Provider.of<DataProvider>(context);
     return MaterialApp(
+      themeMode: dataProvider.isDarkMode ? ThemeMode.dark : ThemeMode.light,
+      theme: MyTheme.lightTheme,
+      darkTheme: MyTheme.darkTheme,
       locale: context.locale,
       supportedLocales: context.supportedLocales,
       localizationsDelegates: context.localizationDelegates,
-      theme: MyTheme.lightTheme,
       debugShowCheckedModeBanner: false,
       routes: {
         RouteManager.mainScreen: (context) => const MainScreen(),
@@ -44,7 +45,7 @@ class MyApp extends StatelessWidget {
           fit: BoxFit.cover,
         ),
         nextScreen:
-            dataprovider.firebaseUser != null
+            dataProvider.firebaseUser != null
                 ? const MainScreen()
                 : const SignInScreen(),
         splashTransition: SplashTransition.fadeTransition,

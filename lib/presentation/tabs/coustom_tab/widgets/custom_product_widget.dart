@@ -22,7 +22,7 @@ class CustomProductWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: Colors.white,
+      color: ColorManager.softBeige,
       shadowColor:
           isSelected ? ColorManager.mutedSageGreen : ColorManager.lightSand,
       shape: RoundedRectangleBorder(
@@ -71,16 +71,16 @@ class CustomProductWidget extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => BlocProvider.value(
-                              value: categoriesCubit,
-                              child: CustomProductDetailsPage(
-                                cubit: categoriesCubit,
-                                product: product,
-                              ),
-                            ),
+                            builder:
+                                (context) => BlocProvider.value(
+                                  value: categoriesCubit,
+                                  child: CustomProductDetailsPage(
+                                    cubit: categoriesCubit,
+                                    product: product,
+                                  ),
+                                ),
                           ),
                         );
-
                       },
                       child: Container(
                         padding: const EdgeInsets.all(8),

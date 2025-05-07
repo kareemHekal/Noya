@@ -6,7 +6,7 @@ import 'package:noya_app/core/utils/string_manager.dart';
 import 'package:noya_app/core/utils/text_style_manager.dart';
 import 'package:noya_app/presentation/timer/view_model/state.dart';
 
-import 'timer/view_model/cubit.dart';
+import 'view_model/cubit.dart';
 
 class TimerPage extends StatefulWidget {
   const TimerPage({super.key});
@@ -26,7 +26,6 @@ class _TimerPageState extends State<TimerPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ColorManager.white,
       appBar: AppBar(
         title: Text(
           AppStrings.timer,
@@ -36,7 +35,6 @@ class _TimerPageState extends State<TimerPage> {
             color: Colors.black,
           ),
         ),
-        backgroundColor: ColorManager.white,
         elevation: 0,
       ),
       body: Center(

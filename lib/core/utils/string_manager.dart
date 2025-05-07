@@ -32,6 +32,7 @@ class AppStrings {
   static String get customLabel => "customLabel".tr();
   static String get consultLabel => "consultLabel".tr();
   static String get profileLabel => "profileLabel".tr();
+  static String get theme => "theme".tr();
   static String get titleNoya => "titleNoya".tr();
   static String get subtitleInteriorDesign => "subtitleInteriorDesign".tr();
   static String get subtitleSmartSolutions => "subtitleSmartSolutions".tr();

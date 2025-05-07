@@ -18,11 +18,20 @@ class _LanguageBottomSheetState extends State<LanguageBottomSheet> {
   @override
   Widget build(BuildContext context) {
     Config().init(context);
+
+    // Get the current theme
+    final currentTheme = Theme.of(context);
+
+    // Set the background color based on the theme
+    final backgroundColor = currentTheme.brightness == Brightness.dark
+        ? ColorManager.deepCharcoalWithGreenHint // Dark mode background color
+        : ColorManager.white; // Light mode background color
+
     return Container(
       height: Config.screenHight! * 0.25,
-      decoration: const BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.only(
+      decoration: BoxDecoration(
+        color: backgroundColor, // Dynamic background color
+        borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(20),
           topRight: Radius.circular(20),
         ),
@@ -38,27 +47,32 @@ class _LanguageBottomSheetState extends State<LanguageBottomSheet> {
               style: Theme.of(context)
                   .textTheme
                   .titleLarge
-                  ?.copyWith(color: ColorManager.black),
+                  ,
             ),
             Expanded(
-              child:
-                  AnimationList(duration: 1000, reBounceDepth: 10.0, children: [
-                LanguageSelectionItem(
+              child: AnimationList(
+                duration: 1000,
+                reBounceDepth: 10.0,
+                children: [
+                  LanguageSelectionItem(
                     label: AppStrings.english,
                     isSelected: context.locale == const Locale('en'),
                     onTap: () {
                       context.setLocale(const Locale('en'));
                       Navigator.pop(context);
-                    }),
-                LanguageSelectionItem(
+                    },
+                  ),
+                  LanguageSelectionItem(
                     label: AppStrings.arabic,
                     isSelected: context.locale == const Locale('ar'),
                     onTap: () {
                       context.setLocale(const Locale('ar'));
                       Navigator.pop(context);
-                    }),
-              ]),
-            )
+                    },
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
       ),

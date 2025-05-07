@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:noya_app/core/resuable_comp/myBotton.dart';
 import 'package:noya_app/core/resuable_comp/toast_message.dart';
+import 'package:noya_app/core/utils/colors_manager.dart';
 import 'package:noya_app/core/utils/string_manager.dart';
 import 'package:noya_app/data/models/WorkerModel.dart';
 import 'package:shimmer/shimmer.dart';
@@ -14,7 +15,7 @@ class WorkerCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: Colors.white,
+      color: ColorManager.softBeige,
       elevation: 4,
       margin: const EdgeInsets.all(8),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
@@ -54,6 +55,8 @@ class WorkerCard extends StatelessWidget {
                       Text(
                         workerModel.name ?? "",
                         style: const TextStyle(
+                          color: ColorManager.black
+                          ,
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
                         ),

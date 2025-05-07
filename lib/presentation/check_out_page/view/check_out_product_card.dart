@@ -23,7 +23,7 @@ class CheckOutProductCard extends StatelessWidget {
     num quantity = product.quantity ?? 1;
 
     return Card(
-      color: Colors.white,
+      color: ColorManager.softBeige,
       elevation: 5,
       shadowColor: ColorManager.oliveGreen,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
@@ -111,6 +111,7 @@ class CheckOutProductCard extends StatelessWidget {
                                   : null,
                           icon: const Icon(Icons.remove),
                           visualDensity: VisualDensity.compact,
+                          color: ColorManager.oliveGreen,
                         ),
                       ),
                       Padding(
@@ -136,6 +137,8 @@ class CheckOutProductCard extends StatelessWidget {
                           },
                           icon: const Icon(Icons.add),
                           visualDensity: VisualDensity.compact,
+                          color: ColorManager.oliveGreen,
+
                         ),
                       ),
                     ],

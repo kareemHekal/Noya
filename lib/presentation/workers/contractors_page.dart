@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:noya_app/core/resuable_comp/toast_message.dart';
+import 'package:noya_app/core/utils/colors_manager.dart';
 import 'package:noya_app/core/utils/string_manager.dart';
 import 'package:noya_app/data/models/WorkerModel.dart';
 import 'package:noya_app/presentation/workers/view_model/workers_cubit.dart';
@@ -59,9 +60,7 @@ class _WorkersScreenState extends State<WorkersScreen> {
         }
       },
       child: Scaffold(
-        backgroundColor: Colors.white,
         appBar: AppBar(
-          backgroundColor: Colors.white,
           forceMaterialTransparency: true,
           title: Text(AppStrings.contractorsLabel),
         ),
@@ -128,7 +127,7 @@ class _WorkersScreenState extends State<WorkersScreen> {
           borderSide: const BorderSide(color: Colors.black, width: 2.0),
         ),
         filled: true,
-        fillColor: Colors.white,
+        fillColor: ColorManager.softBeige,
         contentPadding: const EdgeInsets.symmetric(
           vertical: 16.0,
           horizontal: 20.0,

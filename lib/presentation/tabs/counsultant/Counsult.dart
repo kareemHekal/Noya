@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:noya_app/core/provider.dart';
 import 'package:noya_app/presentation/tabs/counsultant/counslatunt_text_filds.dart';
 import 'package:noya_app/core/resuable_comp/drop_down.dart';
 import 'package:noya_app/core/resuable_comp/myBotton.dart';
@@ -8,7 +9,8 @@ import 'package:noya_app/core/utils/colors_manager.dart';
 import 'package:noya_app/core/utils/string_manager.dart';
 import 'package:noya_app/core/utils/text_style_manager.dart';
 import 'package:noya_app/presentation/timer/view_model/cubit.dart';
-import 'package:noya_app/presentation/timer_page.dart';
+import 'package:noya_app/presentation/timer/timer_page.dart';
+import 'package:provider/provider.dart';
 
 class Counsult extends StatefulWidget {
   const Counsult({super.key});
@@ -16,6 +18,7 @@ class Counsult extends StatefulWidget {
   @override
   State<Counsult> createState() => _CounsultState();
 }
+
 class _CounsultState extends State<Counsult> {
   final _formKey = GlobalKey<FormState>();
 
@@ -23,7 +26,8 @@ class _CounsultState extends State<Counsult> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _phoneNumberController = TextEditingController();
   final TextEditingController _cityLocationController = TextEditingController();
-  final TextEditingController _additionalNotesController = TextEditingController();
+  final TextEditingController _additionalNotesController =
+      TextEditingController();
 
   String? _selectedApartmentSize;
   String? _selectedBudget;
@@ -45,11 +49,11 @@ class _CounsultState extends State<Counsult> {
 
   @override
   Widget build(BuildContext context) {
+    var dataProvider = Provider.of<DataProvider>(context);
+
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
         forceMaterialTransparency: true,
-        backgroundColor: Colors.white,
         title: Text(AppStrings.interiorConsultation),
       ),
       body: SingleChildScrollView(
@@ -69,9 +73,17 @@ class _CounsultState extends State<Counsult> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(AppStrings.freeDesignConsultation, style: AppTextStyle.medium20),
+                        Text(
+                          AppStrings.freeDesignConsultation,
+                          style: Theme.of(context).textTheme.labelLarge
+                              ?.copyWith(color: ColorManager.oliveGreen),
+                        ),
                         const SizedBox(height: 8),
-                        Text(AppStrings.freeAdviceText, style: AppTextStyle.regular12),
+                        Text(
+                          AppStrings.freeAdviceText,
+                          style: Theme.of(context).textTheme.bodyMedium
+                              ?.copyWith(color: ColorManager.oliveGreen),
+                        ),
                         const SizedBox(height: 16),
                       ],
                     ),
@@ -152,25 +164,39 @@ class _CounsultState extends State<Counsult> {
                   decoration: InputDecoration(
                     labelText: AppStrings.additionalNotes,
                     labelStyle: TextStyle(color: Colors.grey[600]),
-                    prefixIcon: const Icon(Icons.edit_note, color: Colors.black87),
+                    prefixIcon: const Icon(
+                      Icons.edit_note,
+                      color: Colors.black87,
+                    ),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12.0),
-                      borderSide: const BorderSide(color: ColorManager.oliveGreen, width: 2),
+                      borderSide: const BorderSide(
+                        color: ColorManager.oliveGreen,
+                        width: 2,
+                      ),
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12.0),
-                      borderSide: const BorderSide(color: ColorManager.oliveGreen, width: 2),
+                      borderSide: const BorderSide(
+                        color: ColorManager.oliveGreen,
+                        width: 2,
+                      ),
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12.0),
-                      borderSide: const BorderSide(color: ColorManager.oliveGreen, width: 2.0),
+                      borderSide: const BorderSide(
+                        color: ColorManager.oliveGreen,
+                        width: 2.0,
+                      ),
                     ),
                     filled: true,
-                    fillColor: Colors.white,
-                    contentPadding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 20.0),
+                    fillColor: ColorManager.softBeige,
+                    contentPadding: const EdgeInsets.symmetric(
+                      vertical: 16.0,
+                      horizontal: 20.0,
+                    ),
                   ),
                   style: const TextStyle(color: Colors.black87),
-
                 ),
                 const SizedBox(height: 16),
                 Row(
@@ -183,10 +209,11 @@ class _CounsultState extends State<Counsult> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (_) => BlocProvider(
-                                create: (_) => TimerCubit(),
-                                child: const TimerPage(),
-                              ),
+                              builder:
+                                  (_) => BlocProvider(
+                                    create: (_) => TimerCubit(),
+                                    child: const TimerPage(),
+                                  ),
                             ),
                           );
 

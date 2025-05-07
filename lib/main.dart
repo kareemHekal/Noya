@@ -23,7 +23,6 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   final authCubit = getIt<AuthCubit>();
-  FlutterNativeSplash.remove();
   runApp(
     EasyLocalization(
       supportedLocales: const [Locale('en'), Locale('ar')],
@@ -40,5 +39,6 @@ void main() async {
       ),
     ),
   );
+  FlutterNativeSplash.remove();
 
 }

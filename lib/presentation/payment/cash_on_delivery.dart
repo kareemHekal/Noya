@@ -32,16 +32,15 @@ class _CashOnDeliveryTabState extends State<CashOnDeliveryTab> {
     final user = Provider.of<DataProvider>(context, listen: false).usermodel;
 
     if (user != null) {
-      _receiverNameController.text = user.name ;
-      _emailController.text = user.email ;
-      _phoneNumberController.text = user.phoneNumber ;
+      _receiverNameController.text = user.name;
+      _emailController.text = user.email;
+      _phoneNumberController.text = user.phoneNumber;
     }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Form(
@@ -60,12 +59,16 @@ class _CashOnDeliveryTabState extends State<CashOnDeliveryTab> {
                     children: [
                       Text(
                         AppStrings.cashOnDeliveryTitle,
-                        style: AppTextStyle.medium20,
+                        style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                          color: ColorManager.oliveGreen,
+                        ),
                       ),
                       const SizedBox(height: 8),
                       Text(
                         AppStrings.cashOnDeliveryBody,
-                        style: AppTextStyle.regular12,
+                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                          color: ColorManager.oliveGreen,
+                        ),
                       ),
                       const SizedBox(height: 16),
                     ],
@@ -129,7 +132,7 @@ class _CashOnDeliveryTabState extends State<CashOnDeliveryTab> {
                             ),
                           ),
                           filled: true,
-                          fillColor: Colors.white,
+                          fillColor:ColorManager.softBeige,
                           contentPadding: const EdgeInsets.symmetric(
                             vertical: 16.0,
                             horizontal: 20.0,
@@ -137,7 +140,6 @@ class _CashOnDeliveryTabState extends State<CashOnDeliveryTab> {
                         ),
                         style: const TextStyle(color: Colors.black87),
                       ),
-
                     ],
                   ),
                 ),
@@ -153,10 +155,7 @@ class _CashOnDeliveryTabState extends State<CashOnDeliveryTab> {
                             message: AppStrings.yourOrderHasBeenSent,
                             tybeMessage: TybeMessage.positive,
                           );
-                          Navigator.pushNamed(
-                            context,
-                            RouteManager.mainScreen,
-                          );
+                          Navigator.pushNamed(context, RouteManager.mainScreen);
                         }
                       },
                     ),

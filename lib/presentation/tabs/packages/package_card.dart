@@ -28,7 +28,7 @@ class PackageDetails extends StatelessWidget {
       child: Container(
         width: 280,
         decoration: BoxDecoration(
-          color: Colors.white,
+          color:ColorManager.softBeige,
           borderRadius: BorderRadius.circular(12),
         ),
         child: Column(
@@ -118,7 +118,7 @@ class PackageDetails extends StatelessWidget {
 
                   Text(
                     "${bundleResponse.bundleItems?.length} ${AppStrings.items}",
-                    style: AppTextStyle.medium14,
+                    style: AppTextStyle.medium14.copyWith(color: ColorManager.black),
                   ),
 
                   // Buttons

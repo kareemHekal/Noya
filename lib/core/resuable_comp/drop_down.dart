@@ -27,7 +27,7 @@ class CustomDropdownField extends StatelessWidget {
       dropdownColor: ColorManager.lightSand,
       decoration: InputDecoration(
         labelText: label,
-        labelStyle: const TextStyle(color: ColorManager.oliveGreen,fontSize: 14),
+        labelStyle: const TextStyle(color: ColorManager.oliveGreen,fontSize:14),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12.0),
           borderSide: const BorderSide(
@@ -60,7 +60,7 @@ class CustomDropdownField extends StatelessWidget {
             width: 2.0,
           ),
         ),
-
+        filled: true,
         fillColor: ColorManager.lightSand,
         contentPadding: const EdgeInsets.symmetric(
           vertical: 16.0,

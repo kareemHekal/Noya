@@ -3,6 +3,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:noya_app/core/di/di.dart';
+import 'package:noya_app/core/provider.dart';
 import 'package:noya_app/presentation/tabs/home/also_avalibale_card.dart';
 import 'package:noya_app/presentation/tabs/home/home_card.dart';
 import 'package:noya_app/core/utils/colors_manager.dart';
@@ -11,6 +12,7 @@ import 'package:noya_app/presentation/workers/contractors_page.dart';
 import 'package:noya_app/presentation/materials/materials_page.dart';
 import 'package:noya_app/presentation/materials/view_model/materials_cubit.dart';
 import 'package:noya_app/presentation/workers/view_model/workers_cubit.dart';
+import 'package:provider/provider.dart';
 
 class HomeScreen extends StatelessWidget {
   final Function(int index) onTabSelected;
@@ -19,6 +21,8 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var dataProvider = Provider.of<DataProvider>(context);
+
     return Scaffold(
       body: Column(
         children: [
@@ -64,7 +68,6 @@ class HomeScreen extends StatelessWidget {
                     ),
                   ),
                   child: Container(
-
                     width: double.infinity,
                     alignment: Alignment.bottomCenter,
                     padding: const EdgeInsets.all(16),
@@ -77,12 +80,12 @@ class HomeScreen extends StatelessWidget {
                           child: Text(
                             AppStrings.titleNoya,
                             style: TextStyle(
-                              color: ColorManager.lightSand.withOpacity(0.6), // Adjust opacity here
+                              color: ColorManager.lightSand.withOpacity(0.6),
+                              // Adjust opacity here
                               fontSize: 60,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-
                         ),
                         Text(
                           AppStrings.subtitleInteriorDesign,
@@ -103,7 +106,6 @@ class HomeScreen extends StatelessWidget {
                         const SizedBox(height: 10),
                       ],
                     ),
-
                   ),
                 ),
               ),
@@ -113,9 +115,12 @@ class HomeScreen extends StatelessWidget {
                 right: 0,
                 child: Container(
                   height: 20,
-                  decoration: const BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.only(
+                  decoration: BoxDecoration(
+                    color:
+                        dataProvider.isDarkMode
+                            ? ColorManager.deepCharcoalWithGreenHint
+                            : ColorManager.white,
+                    borderRadius: const BorderRadius.only(
                       topLeft: Radius.circular(500),
                       topRight: Radius.circular(500),
                     ),
@@ -127,7 +132,12 @@ class HomeScreen extends StatelessWidget {
 
           Expanded(
             child: Container(
-              decoration: const BoxDecoration(color: Colors.white),
+              decoration: BoxDecoration(
+                color:
+                    dataProvider.isDarkMode
+                        ? ColorManager.deepCharcoalWithGreenHint
+                        : ColorManager.white,
+              ),
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 child: AnimationList(
@@ -196,8 +206,9 @@ class HomeScreen extends StatelessWidget {
                                 MaterialPageRoute(
                                   builder:
                                       (context) => BlocProvider(
-                                        create: (context) => getIt<WorkersCubit>(),
-                                        // Pass your WorkersUsecase instance here),
+                                        create:
+                                            (context) => getIt<WorkersCubit>(),
+
                                         child: const WorkersScreen(),
                                       ),
                                 ),

@@ -7,7 +7,6 @@ import 'package:noya_app/core/utils/colors_manager.dart';
 import 'package:noya_app/core/utils/routes_manager.dart';
 import 'package:noya_app/core/utils/string_manager.dart';
 import 'package:noya_app/core/utils/text_style_manager.dart';
-import 'package:noya_app/data/models/user%20model.dart';
 import 'package:noya_app/presentation/Language_bottom_sheet/bottom_sheet.dart';
 import 'package:noya_app/presentation/base_url_changer.dart';
 import 'package:provider/provider.dart';
@@ -23,13 +22,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   void initState() {
     super.initState();
-    Future.microtask(() =>
-        Provider.of<DataProvider>(context, listen: false).initUser());
+    Future.microtask(
+      () => Provider.of<DataProvider>(context, listen: false).initUser(),
+    );
   }
 
   Widget build(BuildContext context) {
+
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
         leading: IconButton(
           onPressed: () {
@@ -49,7 +49,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
           final user = dataProvider.usermodel;
 
           if (user == null) {
-            return const Center(child: CircularProgressIndicator(color: ColorManager.oliveGreen,));
+            return const Center(
+              child: CircularProgressIndicator(color: ColorManager.oliveGreen),
+            );
           }
 
           return Padding(
@@ -73,13 +75,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(user.name , style: AppTextStyle.medium20),
+                        Text(user.name, style: AppTextStyle.medium20),
                         SizedBox(
                           width:
                               MediaQuery.of(context).size.width *
                               0.6, // or use Flexible
                           child: Text(
-                            user.email ,
+                            user.email,
                             style: AppTextStyle.medium16.copyWith(
                               color: ColorManager.white80,
                             ),
@@ -91,7 +93,22 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ),
                   ],
                 ),
-                ProfileCard(label: AppStrings.myOrders, onPressed: () {}),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: Row(
+                    children: [
+                      Text(AppStrings.theme, style: AppTextStyle.medium20),
+                      const Spacer(),
+                      Switch(
+                        activeColor: ColorManager.mutedSageGreen, // when active
+                        inactiveThumbColor: ColorManager.mutedSageGreen,         // thumb when inactive
+                        inactiveTrackColor: ColorManager.lightSand,       // track when inactive
+                        value: dataProvider.isDarkMode,
+                        onChanged: (_) => dataProvider.toggleTheme(),
+                      ),
+                    ],
+                  ),
+                ),
                 ProfileCard(
                   label: AppStrings.language,
                   onPressed: () {

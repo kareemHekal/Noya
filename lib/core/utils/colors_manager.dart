@@ -17,6 +17,13 @@ class ColorManager {
   static const oliveGreen = Color(0xFF5E6F64);
   static const lightSand = Color(0xFFF7F4EF); // example sand tone
   static const offWhite = Color(0xFFFFFEFC);
+
+
+// ==================================== Green Shades ====================================//
+  static const deepCharcoalWithGreenHint = Color(0xFF1C1F1D);
+  static const softOlive = Color(0xFF748379);
+  static const darkTaupe = Color(0xFF2A2D2B);
+
   //==================================== Const Colors ====================================//
   static const white = Color(0xffF9F9F9);
   static const black = Color(0xff0C1015);
