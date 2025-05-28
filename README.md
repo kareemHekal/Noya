@@ -1,16 +1,34 @@
-# noya_app
+# 🛋️ Noya – Furnish Smarter
 
-A new Flutter project.
+![Noya App Preview](assets/read_me/Noya%20App.jpg)
 
-## Getting Started
+**Noya** is a modern furniture shopping app that simplifies the way people furnish their homes. Instead of buying individual pieces, users can choose from curated furniture packages or fully customize their own – all with the guidance of professional interior designers.
 
-This project is a starting point for a Flutter application.
+## 🚀 Features
 
-A few resources to get you started if this is your first Flutter project:
+- 🧩 **Custom Furniture Packages**  
+  Build your own package by mixing and matching items based on your style and budget.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- 🎨 **Interior Designer Consultation**  
+  Chat with experienced interior designers before making any purchase.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- 🛒 **Smart Cart & Checkout**  
+  Seamless cart management with full package overview and pricing.
+
+- 🚚 **Fast & Organized Delivery**  
+  Receive your full furniture package in one go – no delays, no hassle.
+
+- 📱 **User-Friendly Interface**  
+  Smooth UI/UX for browsing, building packages, and scheduling consultations.
+
+## 💡 Tech Stack
+
+- **Flutter** – Cross-platform mobile app development  
+- **Firebase** – Authentication, Firestore, and cloud functions  
+- **Provider / Bloc** – State management  
+
+## 📦 Getting Started
+
+1. Clone the repo  
+   ```bash
+   git clone https://github.com/kareemHekal/Noya.git
