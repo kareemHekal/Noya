@@ -5,7 +5,7 @@
   import 'shared_prefrnces.dart';
 
   class DataProvider extends ChangeNotifier {
-    Usermodel? usermodel;
+    Usermodel? userModel;
     User? firebaseUser;
     bool _isDarkMode = true;
     String _baseUrl = "https://noya-backend.onrender.com";
@@ -55,8 +55,8 @@
 
     Future<void> initUser() async {
       print("Fetching user data...");
-      usermodel = await FirebaseFunctions.ReadUserData();
-      print("User data fetched: $usermodel");
+      userModel = await FirebaseFunctions.ReadUserData();
+      print("User data fetched: $userModel");
       notifyListeners();
     }
   }

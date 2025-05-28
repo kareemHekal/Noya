@@ -50,8 +50,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
               tybeMessage: TybeMessage.positive,
             );
             toastMessage(
-              message:
-              AppStrings.resetPasswordInstruction,
+              message: AppStrings.resetPasswordInstruction,
               tybeMessage: TybeMessage.positive,
             );
           }
@@ -105,8 +104,8 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                               color: ColorManager.black,
                             ),
                           ),
-                           Text(
-                             AppStrings.enterEmailToResetPassword,
+                          Text(
+                            AppStrings.enterEmailToResetPassword,
                             style: const TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.w400,
@@ -136,16 +135,20 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                           child: Column(
                             children: [
                               Padding(
-                                padding: context.locale == const Locale('en')
-                                    ? const EdgeInsets.only(left: 20)
-                                    : const EdgeInsets.only(right: 20),
+                                padding:
+                                    context.locale == const Locale('en')
+                                        ? const EdgeInsets.only(left: 20)
+                                        : const EdgeInsets.only(right: 20),
                                 child: Column(
                                   children: [
                                     const SizedBox(height: 15),
                                     TextFormField(
                                       controller: emailController,
+                                      style: const TextStyle(
+                                        color: Colors.black,
+                                      ),
                                       validator: Validator.email,
-                                      decoration:  InputDecoration(
+                                      decoration: InputDecoration(
                                         hintText: AppStrings.emailHint,
                                       ),
                                       cursorColor: Colors.black,
@@ -165,7 +168,8 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                                             state
                                                     is SendEmailVerificationLoadingState
                                                 ? AppStrings.sendingMessage
-                                                : AppStrings.sendButton, // Show loading text
+                                                : AppStrings.sendButton,
+                                        // Show loading text
                                         onPressed:
                                             state
                                                     is SendEmailVerificationLoadingState

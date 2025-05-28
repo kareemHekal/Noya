@@ -21,6 +21,7 @@ class RegisterScreen extends StatefulWidget {
 class _RegisterScreenState extends State<RegisterScreen> {
   final TextEditingController firstNameController = TextEditingController();
   final TextEditingController lastNameController = TextEditingController();
+  final TextEditingController userAddressController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController rePasswordController = TextEditingController();
@@ -45,6 +46,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
     if (formKey.currentState!.validate()) {
       context.read<AuthCubit>().doIntent(
         RegisterUserIntent(
+          userAddress: userAddressController.text,
           phoneNumber: phoneController.text,
           email: emailController.text,
           password: passwordController.text,
@@ -161,13 +163,19 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           child: Column(
                             children: [
                               Padding(
-                                padding:context.locale == const Locale('en')
-                                    ? const EdgeInsets.only(left: 20)
-                                    : const EdgeInsets.only(right: 20),
+                                padding:
+                                    context.locale == const Locale('en')
+                                        ? const EdgeInsets.only(left: 20)
+                                        : const EdgeInsets.only(right: 20),
                                 child: Column(
                                   children: [
                                     const SizedBox(height: 15),
                                     TextFormField(
+                                      cursorColor: Colors.black,
+
+                                      style: const TextStyle(
+                                        color: Colors.black,
+                                      ),
                                       controller: firstNameController,
                                       validator: Validator.firstName,
                                       decoration: InputDecoration(
@@ -176,6 +184,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     ),
                                     const SizedBox(height: 15),
                                     TextFormField(
+                                      cursorColor: Colors.black,
+                                      style: const TextStyle(
+                                        color: Colors.black,
+                                      ),
                                       controller: lastNameController,
                                       validator: Validator.lastName,
                                       decoration: InputDecoration(
@@ -184,6 +196,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     ),
                                     const SizedBox(height: 15),
                                     TextFormField(
+                                      cursorColor: Colors.black,
+
+                                      style: const TextStyle(
+                                        color: Colors.black,
+                                      ),
                                       controller: emailController,
                                       validator: Validator.email,
                                       decoration: InputDecoration(
@@ -192,6 +209,27 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     ),
                                     const SizedBox(height: 15),
                                     TextFormField(
+                                      cursorColor: Colors.black,
+
+                                      style: const TextStyle(
+                                        color: Colors.black,
+                                      ),
+                                      controller: phoneController,
+                                      validator: Validator.phoneNumber,
+                                      keyboardType:
+                                          const TextInputType.numberWithOptions(),
+                                      decoration: InputDecoration(
+                                        hintText: AppStrings.phoneNumberHint,
+                                      ),
+                                    ),
+
+                                    const SizedBox(height: 15),
+                                    TextFormField(
+                                      cursorColor: Colors.black,
+
+                                      style: const TextStyle(
+                                        color: Colors.black,
+                                      ),
                                       controller: passwordController,
                                       validator: Validator.password,
                                       obscureText: !_isPasswordVisible,
@@ -212,8 +250,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                         ),
                                       ),
                                     ),
+
                                     const SizedBox(height: 15),
                                     TextFormField(
+                                      cursorColor: Colors.black,
+
+                                      style: const TextStyle(
+                                        color: Colors.black,
+                                      ),
                                       controller: rePasswordController,
                                       validator: (value) {
                                         if (value != passwordController.text) {
@@ -229,15 +273,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     ),
                                     const SizedBox(height: 15),
                                     TextFormField(
-                                      controller: phoneController,
-                                      validator: Validator.phoneNumber,
-                                      keyboardType:
-                                          const TextInputType.numberWithOptions(),
+                                      cursorColor: Colors.black,
+                                      style: const TextStyle(
+                                        color: Colors.black,
+                                      ),
+                                      controller: userAddressController,
                                       decoration: InputDecoration(
-                                        hintText: AppStrings.phoneNumberHint,
+                                        hintText: AppStrings.userAddressHint,
                                       ),
                                     ),
-
                                     const SizedBox(height: 15),
                                   ],
                                 ),

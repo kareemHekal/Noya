@@ -25,8 +25,10 @@ class RegisterUserIntent extends AuthIntent {
   final String userName;
   final String password;
   final String phoneNumber;
+  final String userAddress;
 
   RegisterUserIntent({
+    required this.userAddress,
     required this.phoneNumber,
     required this.userName,
     required this.email,

@@ -29,12 +29,12 @@ class _CashOnDeliveryTabState extends State<CashOnDeliveryTab> {
   @override
   void initState() {
     super.initState();
-    final user = Provider.of<DataProvider>(context, listen: false).usermodel;
+    final user = Provider.of<DataProvider>(context, listen: false).userModel;
 
     if (user != null) {
       _receiverNameController.text = user.name;
       _emailController.text = user.email;
-      _phoneNumberController.text = user.phoneNumber;
+      _phoneNumberController.text = user.phoneNumber??"";
     }
   }
 

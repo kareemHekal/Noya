@@ -6,21 +6,24 @@ class FirebaseFunctions {
   // =============================== Authentication Functions ===============================
 
   /// Creates a new account in Firebase and saves the user data
-  static createAccount({required String emailAddress,
+  static createAccount({
+    required String emailAddress,
     required String password,
     required String phoneNumber,
     required Function onSucsses,
-    required Function onEror,
+    required Function onError,
     required String Username,
+    String? userAddress,
   }) async {
     try {
       final credential = await FirebaseAuth.instance
           .createUserWithEmailAndPassword(
-        email: emailAddress,
-        password: password,
-      );
+            email: emailAddress,
+            password: password,
+          );
       credential.user?.sendEmailVerification();
       Usermodel user = Usermodel(
+        userAddress: userAddress,
         phoneNumber: phoneNumber,
         id: credential.user!.uid,
         name: Username,
@@ -29,7 +32,7 @@ class FirebaseFunctions {
       addUser(user);
       onSucsses();
     } on FirebaseAuthException catch (e) {
-      onEror(e.message);
+      onError(e.message);
     }
   }
 
@@ -72,7 +75,7 @@ class FirebaseFunctions {
   static Future<Usermodel?> ReadUserData() async {
     var collection = getUsersCollection();
     DocumentSnapshot<Usermodel> docUser =
-    await collection.doc(FirebaseAuth.instance.currentUser!.uid).get();
+        await collection.doc(FirebaseAuth.instance.currentUser!.uid).get();
     return docUser.data();
   }
 
@@ -88,8 +91,47 @@ class FirebaseFunctions {
     return FirebaseFirestore.instance
         .collection("users")
         .withConverter<Usermodel>(
-      fromFirestore: (snapshot, _) => Usermodel.fromJson(snapshot.data()!),
-      toFirestore: (value, _) => value.tojson(),
-    );
+          fromFirestore: (snapshot, _) => Usermodel.fromJson(snapshot.data()!),
+          toFirestore: (value, _) => value.tojson(),
+        );
+  }
+
+  /// Changes the user's password after re-authenticating with the current password
+  static changePassword({
+    required String currentPassword,
+    required String newPassword,
+    required Function onSuccess,
+    required Function(String? errorMessage) onError,
+  }) async {
+    try {
+      final user = FirebaseAuth.instance.currentUser;
+      if (user == null || user.email == null) {
+        onError('User not logged in');
+        return;
+      }
+
+      // Re-authenticate the user
+      final credential = EmailAuthProvider.credential(
+        email: user.email!,
+        password: currentPassword,
+      );
+      await user.reauthenticateWithCredential(credential);
+
+      // Update password
+      await user.updatePassword(newPassword);
+      onSuccess();
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'wrong-password') {
+        onError('Current password is incorrect');
+      } else if (e.code == 'weak-password') {
+        onError('The new password is too weak');
+      } else if (e.code == 'requires-recent-login') {
+        onError('Please log in again and try');
+      } else {
+        onError(e.message);
+      }
+    } catch (e) {
+      onError('Something went wrong: ${e.toString()}');
+    }
   }
 }

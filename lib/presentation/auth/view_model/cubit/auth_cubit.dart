@@ -64,7 +64,7 @@ class AuthCubit extends Cubit<AuthState> {
       emailAddress: intent.email,
       password: intent.password,
       Username: intent.userName,
-      onEror: (eror) => emit(RegisterViewModelFailure(error: eror)),
+      onError: (eror) => emit(RegisterViewModelFailure(error: eror)),
       onSucsses: () => emit(RegisterViewModelSuccess()),
     );
   }

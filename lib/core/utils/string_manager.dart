@@ -78,6 +78,7 @@ class AppStrings {
   static String get popular => "popular".tr();
   static String get includes => "includes".tr();
   static String get more => "more".tr();
+  static String get thisAccountDoesNotHavePhoneNumber => "thisAccountDoesNotHavePhoneNumber".tr();
   static String get viewDetails => "viewDetails".tr();
   static String get timer => "timer".tr();
   static String get logout => "logout".tr();
@@ -105,6 +106,8 @@ class AppStrings {
   static String get inStock => "inStock".tr();
   static String get payNow => "payNow".tr();
   static String get price => "price".tr();
+  static String get thisAccountDoesNotHaveAddress => "thisAccountDoesNotHaveAddress".tr();
+  static String get userAddressHint => "userAddressHint".tr();
   static String get noWorkersFound => "noWorkersFound".tr();
   static String get searchWorkers => "searchWorkers".tr();
   static String get searchMaterials => "searchMaterials".tr();

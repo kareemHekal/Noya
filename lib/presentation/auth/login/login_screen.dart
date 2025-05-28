@@ -141,6 +141,9 @@ class _SignInScreenState extends State<SignInScreen> {
                                     TextFormField(
                                       validator: Validator.email,
                                       controller: emailController,
+                                      style: const TextStyle(
+                                        color: Colors.black,
+                                      ),
                                       cursorColor: Colors.black,
                                       decoration: InputDecoration(
                                         hintText: AppStrings.emailHint,
@@ -148,6 +151,9 @@ class _SignInScreenState extends State<SignInScreen> {
                                     ),
                                     const SizedBox(height: 35),
                                     TextFormField(
+                                      style: const TextStyle(
+                                        color: Colors.black,
+                                      ),
                                       validator: Validator.password,
                                       controller: passwordController,
                                       obscureText: !_isPasswordVisible,

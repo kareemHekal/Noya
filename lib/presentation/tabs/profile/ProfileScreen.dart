@@ -28,7 +28,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
 
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -46,8 +45,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       ),
       body: Consumer<DataProvider>(
         builder: (context, dataProvider, _) {
-          final user = dataProvider.usermodel;
-
+          final user = dataProvider.userModel;
           if (user == null) {
             return const Center(
               child: CircularProgressIndicator(color: ColorManager.oliveGreen),
@@ -73,13 +71,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       backgroundColor: ColorManager.lightSand,
                     ),
                     Column(
+                      spacing: 2,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(user.name, style: AppTextStyle.medium20),
                         SizedBox(
-                          width:
-                              MediaQuery.of(context).size.width *
-                              0.6, // or use Flexible
+                          width: MediaQuery.of(context).size.width * 0.6,
+                          child: Text(
+                            overflow: TextOverflow.ellipsis,
+                            user.name,
+                            style: AppTextStyle.medium20,
+                          ),
+                        ),
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width * 0.6,
                           child: Text(
                             user.email,
                             style: AppTextStyle.medium16.copyWith(
@@ -87,6 +91,31 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             ),
                             overflow: TextOverflow.ellipsis,
                             maxLines: 1,
+                          ),
+                        ),
+
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width * 0.6,
+                          child: Text(
+                            user.phoneNumber ??
+                                AppStrings.thisAccountDoesNotHavePhoneNumber,
+                            style: AppTextStyle.medium16.copyWith(
+                              color: ColorManager.white80,
+                            ),
+                            overflow: TextOverflow.clip,
+                            maxLines: 2,
+                          ),
+                        ),
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width * 0.6,
+                          child: Text(
+                            user.userAddress ??
+                                AppStrings.thisAccountDoesNotHaveAddress,
+                            style: AppTextStyle.medium16.copyWith(
+                              color: ColorManager.white80,
+                            ),
+                            overflow: TextOverflow.clip,
+                            maxLines: 2,
                           ),
                         ),
                       ],
@@ -100,9 +129,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       Text(AppStrings.theme, style: AppTextStyle.medium20),
                       const Spacer(),
                       Switch(
-                        activeColor: ColorManager.mutedSageGreen, // when active
-                        inactiveThumbColor: ColorManager.mutedSageGreen,         // thumb when inactive
-                        inactiveTrackColor: ColorManager.lightSand,       // track when inactive
+                        activeColor: ColorManager.mutedSageGreen,
+                        // when active
+                        inactiveThumbColor: ColorManager.mutedSageGreen,
+                        // thumb when inactive
+                        inactiveTrackColor: ColorManager.lightSand,
+                        // track when inactive
                         value: dataProvider.isDarkMode,
                         onChanged: (_) => dataProvider.toggleTheme(),
                       ),
