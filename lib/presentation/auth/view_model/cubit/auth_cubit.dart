@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:noya_app/firebase/firebasefunctions.dart';
+
 import 'auth_intent.dart';
 
 part 'auth_state.dart';
@@ -60,10 +61,12 @@ class AuthCubit extends Cubit<AuthState> {
   _register({required RegisterUserIntent intent}) async {
     emit(RegisterViewModelLoading());
     FirebaseFunctions.createAccount(
+      firstName: intent.firstName,
+      userAddress: intent.userAddress,
+      lastName: intent.lastName,
       phoneNumber: intent.phoneNumber,
       emailAddress: intent.email,
       password: intent.password,
-      Username: intent.userName,
       onError: (eror) => emit(RegisterViewModelFailure(error: eror)),
       onSucsses: () => emit(RegisterViewModelSuccess()),
     );

@@ -12,7 +12,8 @@ class FirebaseFunctions {
     required String phoneNumber,
     required Function onSucsses,
     required Function onError,
-    required String Username,
+    required String firstName,
+    required String lastName,
     String? userAddress,
   }) async {
     try {
@@ -26,7 +27,8 @@ class FirebaseFunctions {
         userAddress: userAddress,
         phoneNumber: phoneNumber,
         id: credential.user!.uid,
-        name: Username,
+        firstName: firstName,
+        lastName: lastName,
         email: emailAddress,
       );
       addUser(user);

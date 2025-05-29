@@ -2,13 +2,13 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:noya_app/core/provider.dart';
 import 'package:noya_app/core/resuable_comp/myBotton.dart';
-import 'package:noya_app/presentation/tabs/profile/profile_card.dart';
 import 'package:noya_app/core/utils/colors_manager.dart';
 import 'package:noya_app/core/utils/routes_manager.dart';
 import 'package:noya_app/core/utils/string_manager.dart';
 import 'package:noya_app/core/utils/text_style_manager.dart';
 import 'package:noya_app/presentation/Language_bottom_sheet/bottom_sheet.dart';
 import 'package:noya_app/presentation/base_url_changer.dart';
+import 'package:noya_app/presentation/tabs/profile/profile_card.dart';
 import 'package:provider/provider.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -28,6 +28,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
 
   Widget build(BuildContext context) {
+    final currentTheme = Theme.of(context);
+
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -37,7 +39,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
               MaterialPageRoute(builder: (context) => BaseUrlScreen()),
             );
           },
-          icon: const Icon(Icons.settings_input_antenna, color: Colors.black),
+          icon: Icon(
+            Icons.settings_input_antenna,
+            color:
+            currentTheme.brightness == Brightness.dark
+                ? Colors.white
+                : Colors.black,
+          ),
         ),
         forceMaterialTransparency: true,
         centerTitle: true,
@@ -53,7 +61,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           }
 
           return Padding(
-            padding: const EdgeInsets.all(16),
+            padding: const EdgeInsets.all(8),
             child: Column(
               spacing: 20,
               mainAxisSize: MainAxisSize.max,
@@ -78,7 +86,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           width: MediaQuery.of(context).size.width * 0.6,
                           child: Text(
                             overflow: TextOverflow.ellipsis,
-                            user.name,
+                            user.firstName + " " + user.lastName,
                             style: AppTextStyle.medium20,
                           ),
                         ),
@@ -140,6 +148,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ),
                     ],
                   ),
+                ),
+                ProfileCard(
+                  label: AppStrings.profileLabel,
+                  onPressed: () {
+
+                  },
                 ),
                 ProfileCard(
                   label: AppStrings.language,

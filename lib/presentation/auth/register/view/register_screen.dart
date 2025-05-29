@@ -50,7 +50,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
           phoneNumber: phoneController.text,
           email: emailController.text,
           password: passwordController.text,
-          userName: firstNameController.text,
+          firstName: firstNameController.text,
+          lastName: lastNameController.text,
         ),
       );
       print(

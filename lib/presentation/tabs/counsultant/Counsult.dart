@@ -1,16 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:noya_app/core/provider.dart';
-import 'package:noya_app/presentation/tabs/counsultant/counslatunt_text_filds.dart';
 import 'package:noya_app/core/resuable_comp/drop_down.dart';
 import 'package:noya_app/core/resuable_comp/myBotton.dart';
 import 'package:noya_app/core/resuable_comp/validator.dart';
 import 'package:noya_app/core/utils/colors_manager.dart';
 import 'package:noya_app/core/utils/string_manager.dart';
-import 'package:noya_app/core/utils/text_style_manager.dart';
-import 'package:noya_app/presentation/timer/view_model/cubit.dart';
+import 'package:noya_app/presentation/tabs/counsultant/counslatunt_text_filds.dart';
 import 'package:noya_app/presentation/timer/timer_page.dart';
-import 'package:provider/provider.dart';
+import 'package:noya_app/presentation/timer/view_model/cubit.dart';
 
 class Counsult extends StatefulWidget {
   const Counsult({super.key});
@@ -49,8 +46,7 @@ class _CounsultState extends State<Counsult> {
 
   @override
   Widget build(BuildContext context) {
-    var dataProvider = Provider.of<DataProvider>(context);
-
+    final currentTheme = Theme.of(context);
     return Scaffold(
       appBar: AppBar(
         forceMaterialTransparency: true,
@@ -67,7 +63,9 @@ class _CounsultState extends State<Counsult> {
                 Card(
                   elevation: 3,
                   shadowColor: ColorManager.mutedSageGreen,
-                  color: ColorManager.softBeige,
+                  color: currentTheme.brightness == Brightness.dark
+                      ? ColorManager.oliveGreen
+                      : ColorManager.softBeige,
                   child: Padding(
                     padding: const EdgeInsets.all(12.0),
                     child: Column(
@@ -76,13 +74,19 @@ class _CounsultState extends State<Counsult> {
                         Text(
                           AppStrings.freeDesignConsultation,
                           style: Theme.of(context).textTheme.labelLarge
-                              ?.copyWith(color: ColorManager.oliveGreen),
+                              ?.copyWith(color: currentTheme.brightness ==
+                              Brightness.dark
+                              ? ColorManager.softBeige
+                              : ColorManager.oliveGreen,),
                         ),
                         const SizedBox(height: 8),
                         Text(
                           AppStrings.freeAdviceText,
                           style: Theme.of(context).textTheme.bodyMedium
-                              ?.copyWith(color: ColorManager.oliveGreen),
+                              ?.copyWith(color: currentTheme.brightness ==
+                              Brightness.dark
+                              ? ColorManager.softBeige
+                              : ColorManager.oliveGreen,),
                         ),
                         const SizedBox(height: 16),
                       ],

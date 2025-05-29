@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:noya_app/core/provider.dart';
-import 'package:noya_app/presentation/tabs/counsultant/counslatunt_text_filds.dart';
 import 'package:noya_app/core/resuable_comp/myBotton.dart';
 import 'package:noya_app/core/resuable_comp/toast_message.dart';
 import 'package:noya_app/core/resuable_comp/validator.dart';
 import 'package:noya_app/core/utils/colors_manager.dart';
 import 'package:noya_app/core/utils/routes_manager.dart';
 import 'package:noya_app/core/utils/string_manager.dart';
-import 'package:noya_app/core/utils/text_style_manager.dart';
+import 'package:noya_app/presentation/tabs/counsultant/counslatunt_text_filds.dart';
 import 'package:provider/provider.dart';
 
 class CashOnDeliveryTab extends StatefulWidget {
@@ -32,14 +31,15 @@ class _CashOnDeliveryTabState extends State<CashOnDeliveryTab> {
     final user = Provider.of<DataProvider>(context, listen: false).userModel;
 
     if (user != null) {
-      _receiverNameController.text = user.name;
+      _receiverNameController.text = "${user.firstName} ${user.lastName}";
       _emailController.text = user.email;
-      _phoneNumberController.text = user.phoneNumber??"";
+      _phoneNumberController.text = user.phoneNumber ?? "";
     }
   }
 
   @override
   Widget build(BuildContext context) {
+    final currentTheme = Theme.of(context);
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -51,7 +51,10 @@ class _CashOnDeliveryTabState extends State<CashOnDeliveryTab> {
               Card(
                 elevation: 3,
                 shadowColor: ColorManager.mutedSageGreen,
-                color: ColorManager.softBeige,
+                color:
+                    currentTheme.brightness == Brightness.dark
+                        ? ColorManager.oliveGreen
+                        : ColorManager.softBeige,
                 child: Padding(
                   padding: const EdgeInsets.all(12.0),
                   child: Column(
@@ -60,14 +63,20 @@ class _CashOnDeliveryTabState extends State<CashOnDeliveryTab> {
                       Text(
                         AppStrings.cashOnDeliveryTitle,
                         style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                          color: ColorManager.oliveGreen,
+                          color:
+                              currentTheme.brightness == Brightness.dark
+                                  ? ColorManager.oliveGreen
+                                  : ColorManager.softBeige,
                         ),
                       ),
                       const SizedBox(height: 8),
                       Text(
                         AppStrings.cashOnDeliveryBody,
                         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                          color: ColorManager.oliveGreen,
+                          color:
+                              currentTheme.brightness == Brightness.dark
+                                  ? ColorManager.oliveGreen
+                                  : ColorManager.softBeige,
                         ),
                       ),
                       const SizedBox(height: 16),
@@ -132,7 +141,7 @@ class _CashOnDeliveryTabState extends State<CashOnDeliveryTab> {
                             ),
                           ),
                           filled: true,
-                          fillColor:ColorManager.softBeige,
+                          fillColor: ColorManager.softBeige,
                           contentPadding: const EdgeInsets.symmetric(
                             vertical: 16.0,
                             horizontal: 20.0,

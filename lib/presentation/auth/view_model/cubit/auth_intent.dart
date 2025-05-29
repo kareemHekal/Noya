@@ -22,7 +22,8 @@ class SignInIntent extends AuthIntent {
 
 class RegisterUserIntent extends AuthIntent {
   final String email;
-  final String userName;
+  final String firstName;
+  final String lastName;
   final String password;
   final String phoneNumber;
   final String userAddress;
@@ -30,7 +31,8 @@ class RegisterUserIntent extends AuthIntent {
   RegisterUserIntent({
     required this.userAddress,
     required this.phoneNumber,
-    required this.userName,
+    required this.firstName,
+    required this.lastName,
     required this.email,
     required this.password,
   });
