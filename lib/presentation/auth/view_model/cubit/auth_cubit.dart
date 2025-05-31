@@ -45,7 +45,10 @@ class AuthCubit extends Cubit<AuthState> {
       emailAddress: intent.email,
       password: intent.password,
       onEror: (eror) => emit(LoginErrorState(message: eror)),
-      onSucsses: () => emit(LoginSuccessState()),
+      onSucsses: () {
+        emit(LoginSuccessState());
+        intent.onSuccess();
+      },
     );
   }
 

@@ -6,16 +6,19 @@ import 'package:lottie/lottie.dart';
 import 'package:noya_app/core/app_theme.dart';
 import 'package:noya_app/core/provider.dart';
 import 'package:noya_app/core/utils/colors_manager.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
+
 import 'core/utils/routes_manager.dart';
 import 'presentation/auth/forget_password/view/forget_password_screen.dart';
 import 'presentation/auth/login/login_screen.dart';
 import 'presentation/auth/register/view/register_screen.dart';
 import 'presentation/main_screen/main_screen.dart';
-import 'package:page_transition/page_transition.dart';
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final bool isLogged;
+
+  const MyApp({required this.isLogged, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -45,9 +48,8 @@ class MyApp extends StatelessWidget {
           fit: BoxFit.cover,
         ),
         nextScreen:
-            dataProvider.firebaseUser != null
-                ? const MainScreen()
-                : const SignInScreen(),
+            isLogged == true ? const MainScreen() : const SignInScreen(),
+
         splashTransition: SplashTransition.fadeTransition,
         pageTransitionType: PageTransitionType.rightToLeft,
         backgroundColor: ColorManager.lightSand,

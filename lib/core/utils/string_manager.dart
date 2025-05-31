@@ -31,6 +31,9 @@ class AppStrings {
   static String get packagesLabel => "packagesLabel".tr();
   static String get customLabel => "customLabel".tr();
   static String get consultLabel => "consultLabel".tr();
+
+  static String get onceYouVerifyYourEmailItWillBeUpdated =>
+      "onceYouVerifyYourEmailItWillBeUpdated".tr();
   static String get profileLabel => "profileLabel".tr();
   static String get theme => "theme".tr();
   static String get titleNoya => "titleNoya".tr();
@@ -112,6 +115,46 @@ class AppStrings {
   static String get searchWorkers => "searchWorkers".tr();
   static String get searchMaterials => "searchMaterials".tr();
   static String get noMaterialsFound => "noMaterialsFound".tr();
+
+  static String get orders => "orders".tr();
+
+  static String get favorites => "favorites".tr();
+
+  static String get save => "save".tr();
+
+  static String get currentPassword => "currentPassword".tr();
+
+  static String get newEmail => "newEmail".tr();
+
+  static String get invalidEmail => "invalidEmail".tr();
+
+  static String get requiredField => "requiredField".tr();
+
+  static String get updateEmail => "updateEmail".tr();
+
+  static String get emailUpdatedSuccessfully => "emailUpdatedSuccessfully".tr();
+
+  static String get somethingWentWrong => "somethingWentWrong".tr();
+
+  static String get newPassword => "newPassword".tr();
+
+  static String get min6Characters => "min6Characters".tr();
+
+  static String get confirmPassword => "confirmPassword".tr();
+
+  static String get updatePassword => "updatePassword".tr();
+
+  static String get passwordUpdatedSuccessfully =>
+      "passwordUpdatedSuccessfully".tr();
+
+  static String get changePasswordOrEmail => "changePasswordOrEmail".tr();
+
+  static String get editProfile => "editProfile".tr();
+
+  static String get yourDataUpdatedSuccessfully =>
+      "yourDataUpdatedSuccessfully".tr();
+
+  static String get yourDataNotUpdated => "yourDataNotUpdated".tr();
   static String get addToCart => "addToCart".tr();
   static String get itsAlreadyAdded => "itsAlreadyAdded".tr();
   static String get cashOnDeliveryTitle => "cashOnDeliveryTitle".tr();

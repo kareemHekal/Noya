@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:noya_app/core/provider.dart';
+import 'package:noya_app/core/resuable_comp/custom_text_field.dart';
 import 'package:noya_app/core/resuable_comp/myBotton.dart';
 import 'package:noya_app/core/resuable_comp/toast_message.dart';
 import 'package:noya_app/core/resuable_comp/validator.dart';
 import 'package:noya_app/core/utils/colors_manager.dart';
 import 'package:noya_app/core/utils/routes_manager.dart';
 import 'package:noya_app/core/utils/string_manager.dart';
-import 'package:noya_app/presentation/tabs/counsultant/counslatunt_text_filds.dart';
 import 'package:provider/provider.dart';
 
 class CashOnDeliveryTab extends StatefulWidget {

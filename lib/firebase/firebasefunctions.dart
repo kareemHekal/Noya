@@ -22,7 +22,6 @@ class FirebaseFunctions {
             email: emailAddress,
             password: password,
           );
-      credential.user?.sendEmailVerification();
       Usermodel user = Usermodel(
         userAddress: userAddress,
         phoneNumber: phoneNumber,
@@ -47,13 +46,11 @@ class FirebaseFunctions {
     required Function onEror,
   }) async {
     try {
-      final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+      final _ = await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: emailAddress,
         password: password,
       );
-      if (credential.user?.emailVerified == true) {
         onSucsses();
-      }
     } on FirebaseAuthException catch (e) {
       onEror(e.message);
     }
@@ -98,6 +95,31 @@ class FirebaseFunctions {
         );
   }
 
+  /// Changes the user's email after re-authenticating with the current password
+  static Future<void> changeEmailWithoutVerification({
+    required String newEmail,
+    required void Function() onSuccess,
+    required void Function(String error) onError,
+  }) async {
+    try {
+      final user = FirebaseAuth.instance.currentUser;
+      if (user == null || user.email == null) {
+        onError('User not logged in');
+        return;
+      }
+
+      await user.verifyBeforeUpdateEmail(newEmail);
+
+      onSuccess();
+    } on FirebaseAuthException catch (e) {
+      onError(e.message ?? 'Unknown Firebase error');
+      print("Firebase error: ${e.message} ⭐⭐⭐⭐⭐");
+    } catch (e) {
+      onError('Unexpected error: $e');
+      print("Firebase error: ${e.toString()} ⭐⭐⭐⭐⭐");
+    }
+  }
+
   /// Changes the user's password after re-authenticating with the current password
   static changePassword({
     required String currentPassword,
@@ -134,6 +156,38 @@ class FirebaseFunctions {
       }
     } catch (e) {
       onError('Something went wrong: ${e.toString()}');
+    }
+  }
+
+  /// Updates specific fields of the current user's data
+  static Future<void> updateUserData({
+    required String? firstName,
+    required String? lastName,
+    required String? email,
+    required String? phoneNumber,
+    required String? userAddress,
+    required Function onSuccess,
+    required Function(String? errorMessage) onError,
+  }) async {
+    try {
+      final userId = FirebaseAuth.instance.currentUser?.uid;
+      if (userId == null) {
+        onError("User not logged in");
+        return;
+      }
+
+      var collection = getUsersCollection();
+      await collection.doc(userId).update({
+        "email": email,
+        "firstName": firstName,
+        "lastName": lastName,
+        "phoneNumber": phoneNumber,
+        "userAddress": userAddress,
+      });
+
+      onSuccess();
+    } catch (e) {
+      onError("Failed to update user data: ${e.toString()}");
     }
   }
 }

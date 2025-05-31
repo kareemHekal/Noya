@@ -24,6 +24,7 @@ class CustomTextField extends StatelessWidget {
           isPhoneNumber ?? false ? TextInputType.phone : TextInputType.text,
       obscureText: isSecure ?? false,
       validator: validator,
+      cursorColor: ColorManager.black,
       controller: controller,
       decoration: InputDecoration(
         labelText: label,

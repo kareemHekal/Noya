@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 ///  Auth Intent ///
 // ignore_for_file: non_constant_identifier_names, dangling_library_doc_comments
 
@@ -7,10 +9,11 @@ class SignInIntent extends AuthIntent {
   final String email;
   final String userName;
   final String password;
-
+  final VoidCallback onSuccess;
   SignInIntent({
     required this.userName,
     required this.email,
+    required this.onSuccess,
     required this.password,
   });
 }

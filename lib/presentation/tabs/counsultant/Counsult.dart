@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:noya_app/core/resuable_comp/custom_text_field.dart';
 import 'package:noya_app/core/resuable_comp/drop_down.dart';
 import 'package:noya_app/core/resuable_comp/myBotton.dart';
 import 'package:noya_app/core/resuable_comp/validator.dart';
 import 'package:noya_app/core/utils/colors_manager.dart';
 import 'package:noya_app/core/utils/string_manager.dart';
-import 'package:noya_app/presentation/tabs/counsultant/counslatunt_text_filds.dart';
 import 'package:noya_app/presentation/timer/timer_page.dart';
 import 'package:noya_app/presentation/timer/view_model/cubit.dart';
 

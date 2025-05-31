@@ -72,10 +72,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
               message: AppStrings.createdAccountSuccessfully,
               tybeMessage: TybeMessage.positive,
             );
-            toastMessage(
-              message: AppStrings.verificationEmailSent,
-              tybeMessage: TybeMessage.positive,
-            );
           }
           if (state is RegisterViewModelFailure) {
             toastMessage(

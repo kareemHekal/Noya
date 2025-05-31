@@ -3,11 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:noya_app/core/provider.dart';
 import 'package:noya_app/core/resuable_comp/myBotton.dart';
 import 'package:noya_app/core/utils/colors_manager.dart';
+import 'package:noya_app/core/utils/config.dart';
 import 'package:noya_app/core/utils/routes_manager.dart';
 import 'package:noya_app/core/utils/string_manager.dart';
 import 'package:noya_app/core/utils/text_style_manager.dart';
 import 'package:noya_app/presentation/Language_bottom_sheet/bottom_sheet.dart';
 import 'package:noya_app/presentation/base_url_changer.dart';
+import 'package:noya_app/presentation/edit_profile/password_and_email/edit_password_and_email.dart';
+import 'package:noya_app/presentation/edit_profile/user_data/edit_profile_screen.dart';
 import 'package:noya_app/presentation/tabs/profile/profile_card.dart';
 import 'package:provider/provider.dart';
 
@@ -28,6 +31,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
 
   Widget build(BuildContext context) {
+    Config().init(context);
+
     final currentTheme = Theme.of(context);
 
     return Scaffold(
@@ -42,9 +47,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
           icon: Icon(
             Icons.settings_input_antenna,
             color:
-            currentTheme.brightness == Brightness.dark
-                ? Colors.white
-                : Colors.black,
+                currentTheme.brightness == Brightness.dark
+                    ? Colors.white
+                    : Colors.black,
           ),
         ),
         forceMaterialTransparency: true,
@@ -149,22 +154,55 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ],
                   ),
                 ),
-                ProfileCard(
-                  label: AppStrings.profileLabel,
-                  onPressed: () {
+                Expanded(
+                  child: SingleChildScrollView(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      spacing: 8,
+                      children: [
+                        ProfileCard(
+                          label: AppStrings.profileLabel,
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => EditProfileScreen(),
+                              ),
+                            );
+                          },
+                        ),
+                        ProfileCard(label: AppStrings.orders, onPressed: () {}),
+                        ProfileCard(
+                          label: AppStrings.favorites,
+                          onPressed: () {},
+                        ),
+                        ProfileCard(
+                          label: AppStrings.language,
+                          onPressed: () {
+                            showModalBottomSheet(
+                              context: context,
+                              backgroundColor: Colors.transparent,
+                              builder: (context) => const LanguageBottomSheet(),
+                            );
+                          },
+                        ),
+                        ProfileCard(
+                          label: AppStrings.changePasswordOrEmail,
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder:
+                                    (context) => const EditPasswordAndEmail(),
+                              ),
+                            );
+                          },
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
 
-                  },
-                ),
-                ProfileCard(
-                  label: AppStrings.language,
-                  onPressed: () {
-                    showModalBottomSheet(
-                      context: context,
-                      backgroundColor: Colors.transparent,
-                      builder: (context) => const LanguageBottomSheet(),
-                    );
-                  },
-                ),
                 Row(
                   children: [
                     Expanded(
@@ -172,6 +210,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         label: AppStrings.logout,
                         onPressed: () {
                           FirebaseAuth.instance.signOut();
+                          dataProvider.setLogged(false);
                           Navigator.pushNamedAndRemoveUntil(
                             context,
                             RouteManager.loginScreen,
@@ -182,6 +221,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ),
                   ],
                 ),
+                SizedBox(height: Config.screenHight! * 0.001),
               ],
             ),
           );

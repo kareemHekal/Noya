@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:noya_app/core/provider.dart';
 import 'package:noya_app/core/resuable_comp/myBotton.dart';
 import 'package:noya_app/core/resuable_comp/toast_message.dart';
 import 'package:noya_app/core/resuable_comp/validator.dart';
@@ -9,6 +10,7 @@ import 'package:noya_app/core/utils/routes_manager.dart';
 import 'package:noya_app/core/utils/string_manager.dart';
 import 'package:noya_app/presentation/auth/view_model/cubit/auth_cubit.dart';
 import 'package:noya_app/presentation/auth/view_model/cubit/auth_intent.dart';
+import 'package:provider/provider.dart';
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({super.key});
@@ -25,9 +27,14 @@ class _SignInScreenState extends State<SignInScreen> {
   bool _isPasswordVisible = false;
 
   void _validateAndLogin(BuildContext context) {
+    final dataProvider = Provider.of<DataProvider>(context, listen: false);
     if (_formKey.currentState!.validate()) {
       context.read<AuthCubit>().doIntent(
         SignInIntent(
+          onSuccess: () {
+            dataProvider.setLogged(true);
+          },
+
           email: emailController.text,
           password: passwordController.text,
           userName: userNameController.text,

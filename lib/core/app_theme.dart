@@ -66,7 +66,9 @@ class MyTheme {
           borderSide: BorderSide(color: ColorManager.mutedSageGreen),
         ),
         focusColor: ColorManager.mutedSageGreen,
-        floatingLabelStyle: TextStyle(color: ColorManager.mutedSageGreen),
+        floatingLabelStyle: TextStyle(color: ColorManager.mutedSageGreen,
+            fontSize: 18,
+            fontWeight: FontWeight.bold),
         errorBorder: UnderlineInputBorder(
           borderSide: BorderSide(color: Colors.red),
         ),
